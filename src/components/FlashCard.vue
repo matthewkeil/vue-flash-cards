@@ -1,8 +1,10 @@
 <template>
-  <div class="relative w-40 h-40 bg-green" @click="flipCard">
+  <div class="container relative w-40 h-40 bg-green" @click="flipCard">
     <div class="card absolute w-full h-full" :class="{ flipped: isFlipped }">
-      <div class="front absolute w-full h-full bg-gray-300">front</div>
-      <div class="back absolute w-full h-full bg-gray-300">back</div>
+      <div class="front absolute w-full h-full bg-gray-300">
+        {{ frontText }}
+      </div>
+      <div class="back absolute w-full h-full bg-gray-300">{{ backText }}</div>
     </div>
   </div>
 </template>
@@ -35,6 +37,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.container {
+  transform: scale(1);
+  transition: transform 0.3s;
+}
+.container:hover {
+  transform: scale(1.1);
+}
+
 .card {
   transform-style: preserve-3d;
   transition: all 0.5s;
