@@ -1,11 +1,17 @@
 <template>
   <div class="container">
-    <CardStack :cards="cards" />
+    <CardStack
+      :key="nextCardIndex"
+      :nextCard="nextCard"
+      :cardsRemaining="cardsRemaining"
+      :maxDepth="5"
+      @ready="getNextCard"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 // import FlashCard from "../components/FlashCard.vue";
 import CardStack, { Card } from "../components/CardStack.vue";
 
@@ -56,9 +62,50 @@ export default defineComponent({
         frontText: "10",
         backText: "back",
       },
+      {
+        frontText: "11",
+        backText: "back",
+      },
+      {
+        frontText: "12",
+        backText: "back",
+      },
+      {
+        frontText: "13",
+        backText: "back",
+      },
+      {
+        frontText: "14",
+        backText: "back",
+      },
+      {
+        frontText: "15",
+        backText: "back",
+      },
     ];
+
+    const currentCardIndex = ref(0);
+    const nextCardIndex = ref(1);
+    const cardsRemaining = ref(cards.length - (nextCardIndex.value + 1));
+
+    const currentCard = ref(cards[currentCardIndex.value]);
+    const nextCard = ref(cards[nextCardIndex.value]);
+
+    function getNextCard() {
+      currentCardIndex.value = nextCardIndex.value;
+      currentCard.value = cards[currentCardIndex.value];
+      nextCardIndex.value += 1;
+      nextCard.value = cards[nextCardIndex.value];
+      cardsRemaining.value = cards.length - (nextCardIndex.value + 1);
+    }
+
     return {
-      cards,
+      currentCardIndex,
+      currentCard,
+      nextCardIndex,
+      nextCard,
+      getNextCard,
+      cardsRemaining,
     };
   },
 });

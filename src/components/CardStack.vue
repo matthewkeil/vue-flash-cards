@@ -1,47 +1,25 @@
 <template>
   <div class="stack relative">
     <div
-      v-for="(card, index) of stack"
+      v-if="showBackCard"
+      :class="getClasses()"
+      :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
+    ></div>
+    <div
+      v-for="index in stackDepth"
       :key="index"
-      class="
-        card
-        absolute
-        grid
-        w-full
-        h-full
-        justify-center
-        items-center
-        rounded-3xl
-        bg-white
-      "
-      :style="{
-        '--front-to-back-time': `${frontToBackTime}ms`,
-        '--stack-move-time': `${stackMoveTime}ms`,
-      }"
+      :class="getClasses()"
+      :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
     >
-      {{ card.frontText }}
+      {{ nextCard.frontText }}
     </div>
     <div
-      v-if="showTopCard"
-      class="
-        card
-        absolute
-        grid
-        w-full
-        h-full
-        justify-center
-        items-center
-        rounded-3xl
-        bg-white
-      "
-      :style="{
-        '--front-to-back-time': `${frontToBackTime}ms`,
-        '--stack-move-time': `${stackMoveTime}ms`,
-      }"
-      :class="{ frontToBackActive: frontToBackActive }"
-      @click.prevent="frontToBack()"
+      v-if="showFrontCard"
+      :class="getClasses()"
+      :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
+      @click.prevent="shiftStack()"
     >
-      {{ topCard.frontText }}
+      ACTIVE_CARD_PLACEHOLDER
     </div>
   </div>
 </template>
@@ -55,51 +33,60 @@ export interface Card {
 
 export default defineComponent({
   props: {
-    cards: {
-      type: Object as PropType<Card[]>,
+    nextCard: {
+      type: Object as PropType<Card>,
       required: true,
     },
+    cardsRemaining: {
+      type: Number,
+      required: false,
+      default: 5,
+    },
+    maxDepth: {
+      type: Number,
+      required: false,
+      default: 5,
+    },
   },
-  setup(props) {
-    function buildStack(cards: Card[]) {
-      const maxDepth = 5;
-      const stackDepth = ref(cards.length > maxDepth ? maxDepth : cards.length);
-      const stack = ref(cards.slice(0, stackDepth.value).reverse());
-      return {
-        stack,
-        stackDepth,
-      };
+  setup(props, { emit }) {
+    const MAX_STACK = 10;
+    const maxDepth = props.maxDepth > MAX_STACK ? MAX_STACK : props.maxDepth;
+    const stackDepth = ref(
+      props.cardsRemaining > maxDepth ? maxDepth : props.cardsRemaining
+    );
+
+    if (stackDepth.value > 1) {
+      stackDepth.value -= 1;
     }
 
-    const { stack, stackDepth } = buildStack(props.cards);
-    const topCard = ref(stack.value.pop());
-    const showTopCard = ref(true);
+    const stackMoveTime = 400;
+    const showFrontCard = ref(true);
+    const showBackCard = ref(false);
 
-    const frontToBackActive = ref(false);
-    const frontToBackTime = 500;
-    const stackMoveTime = 100;
-    function frontToBack() {
-      frontToBackActive.value = true;
+    if (stackDepth.value === 0) {
+      showFrontCard.value = false;
+    }
+
+    function shiftStack() {
+      if (stackDepth.value === 0) return;
+      showFrontCard.value = false;
+      showBackCard.value = true;
       setTimeout(() => {
-        frontToBackActive.value = false;
-        showTopCard.value = false;
-        setTimeout(() => {
-          showTopCard.value = true;
-          stack.value.unshift(topCard.value!);
-          topCard.value = stack.value.pop();
-        }, stackMoveTime);
-      }, frontToBackTime);
+        emit("ready");
+      }, stackMoveTime);
+    }
+
+    function getClasses() {
+      return "card absolute grid w-full h-full justify-center items-center rounded-3xl bg-white";
     }
 
     return {
-      topCard,
-      showTopCard,
-      stack,
       stackDepth,
-      frontToBack,
-      frontToBackTime,
       stackMoveTime,
-      frontToBackActive,
+      showFrontCard,
+      showBackCard,
+      shiftStack,
+      getClasses,
     };
   },
 });
@@ -116,9 +103,13 @@ export default defineComponent({
   box-shadow: 0 5px 10px 0 rgba(78, 78, 78, 0.2),
     0 15px 20px 0 rgba(78, 78, 78, 0.1);
 }
+.card:nth-last-child(1) {
+  transform: translateY(0px) scale(1);
+  filter: brightness(1);
+}
 .card:nth-last-child(2) {
   transform: translateY(-9px) scale(0.98);
-    filter: brightness(0.95);
+  filter: brightness(0.95);
 }
 .card:nth-last-child(3) {
   transform: translateY(-18px) scale(0.96);
@@ -132,20 +123,24 @@ export default defineComponent({
   transform: translateY(-36px) scale(0.92);
   filter: brightness(0.8);
 }
-
-.frontToBackActive {
-  animation: frontToBackAnimation var(--front-to-back-time) normal;
+.card:nth-last-child(6) {
+  transform: translateY(-45px) scale(0.9);
+  filter: brightness(0.75);
 }
-
-@keyframes frontToBackAnimation {
-  50% {
-    transform: translate(90%, -90%) scale(0.85) rotate(8deg);
-    // animation-timing-function: ease;
-  }
-  100% {
-    transform: translateY(-5%) scale(0.85);
-    // animation-timing-function: ease;
-    z-index: 1;
-  }
+.card:nth-last-child(7) {
+  transform: translateY(-54px) scale(0.88);
+  filter: brightness(0.7);
+}
+.card:nth-last-child(8) {
+  transform: translateY(-63px) scale(0.86);
+  filter: brightness(0.65);
+}
+.card:nth-last-child(9) {
+  transform: translateY(-72px) scale(0.84);
+  filter: brightness(0.6);
+}
+.card:nth-last-child(10) {
+  transform: translateY(-81px) scale(0.82);
+  filter: brightness(0.55);
 }
 </style>
