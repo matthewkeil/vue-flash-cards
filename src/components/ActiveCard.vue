@@ -1,31 +1,67 @@
 <template>
-  <div
-    class="container"
-    :style="{
-      '--front-to-back-time': `${frontToBackTime}ms`,
-      '--flip-down-time': `${flipDownTime}ms`,
-    }"
-    :class="{
-      frontToBackActive: frontToBackActive,
-      flipDownActive: flipDownActive,
-    }"
-    @click.prevent="flipCard()"
-  >
-    <!-- grid
+  <div>
+    <div
+      class="container relative bg-transparent"
+      :style="{
+        '--front-to-back-time': `${frontToBackTime}ms`,
+        '--flip-down-time': `${flipDownTime}ms`,
+      }"
+      :class="{
+        frontToBackActive: frontToBackActive,
+        flipDownActive: flipDownActive,
+      }"
+      @click.prevent="flipCard()"
+    >
+      <!-- grid
       w-full
-      h-full
-      rounded-3xl
-      bg-white -->
-    <div class="card absolute w-full h-full" :class="{ flipped: isFlipped }">
-      <div class="front absolute w-full h-full bg-gray-300">
-        {{ activeCard.frontText }}
+      h-full -->
+      <div
+        class="
+          card
+          absolute
+          justify-center
+          items-center
+          grid
+          w-full
+          h-full
+          rounded-3xl
+          bg-white
+        "
+        :class="{ flipped: isFlipped }"
+      >
+        <div
+          class="
+            front
+            absolute
+            justify-center
+            items-center
+            grid
+            w-full
+            h-full
+            rounded-3xl
+            bg-white
+          "
+        >
+          {{ activeCard.frontText }}
+        </div>
+        <div
+          class="
+            back
+            absolute
+            justify-center
+            items-center
+            grid
+            w-full
+            h-full
+            rounded-3xl
+            bg-white
+          "
+        >
+          {{ activeCard.backText }}
+        </div>
       </div>
-      <div class="back absolute w-full h-full bg-gray-300">
-        {{ activeCard.backText }}
-      </div>
-    </div>
 
-    <!-- <div
+      <!-- <div
       :class="{ flipped: isFlipped }"
       class="front absolute w-full h-full bg-gray-300"
     >
@@ -34,6 +70,7 @@
     <div class="back absolute w-full h-full bg-gray-300">
       {{ activeCard.backText }}
     </div> -->
+    </div>
   </div>
 </template>
 
@@ -95,7 +132,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .container {
-  position: relative;
   width: 40rem;
   height: 26rem;
   z-index: 2;

@@ -3,12 +3,14 @@
     <div class="stack relative">
       <div
         v-if="showBackCard"
+        class="bg-white"
         :class="getClasses()"
         :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
       ></div>
       <div
         v-for="index in stackDepth"
         :key="index"
+        class="bg-white"
         :class="getClasses()"
         :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
       >
@@ -16,11 +18,10 @@
       </div>
       <div
         v-if="showFrontCard"
+        class="bg-transparent"
         :class="getClasses()"
         :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
-      >
-        ACTIVE_CARD_PLACEHOLDER
-      </div>
+      ></div>
     </div>
   </div>
 </template>
@@ -78,7 +79,7 @@ export default defineComponent({
     }
 
     function getClasses() {
-      return "card absolute grid w-full h-full justify-center items-center rounded-3xl bg-white";
+      return "card absolute grid w-full h-full justify-center items-center rounded-3xl";
     }
 
     return {
