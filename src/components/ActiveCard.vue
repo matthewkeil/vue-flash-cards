@@ -12,9 +12,6 @@
       }"
       @click.prevent="flipCard()"
     >
-      <!-- grid
-      w-full
-      h-full -->
       <div
         class="
           card
@@ -25,7 +22,6 @@
           w-full
           h-full
           rounded-3xl
-          bg-white
         "
         :class="{ flipped: isFlipped }"
       >
@@ -60,16 +56,6 @@
           {{ activeCard.backText }}
         </div>
       </div>
-
-      <!-- <div
-      :class="{ flipped: isFlipped }"
-      class="front absolute w-full h-full bg-gray-300"
-    >
-      {{ activeCard.frontText }}
-    </div>
-    <div class="back absolute w-full h-full bg-gray-300">
-      {{ activeCard.backText }}
-    </div> -->
     </div>
   </div>
 </template>
@@ -142,7 +128,7 @@ export default defineComponent({
 
 .card {
   transform-style: preserve-3d;
-  transition: transform 0.5s;
+  transition: all 0.5s;
 }
 
 .front,
