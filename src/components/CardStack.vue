@@ -1,25 +1,26 @@
 <template>
-  <div class="stack relative">
-    <div
-      v-if="showBackCard"
-      :class="getClasses()"
-      :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
-    ></div>
-    <div
-      v-for="index in stackDepth"
-      :key="index"
-      :class="getClasses()"
-      :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
-    >
-      {{ nextCard.frontText }}
-    </div>
-    <div
-      v-if="showFrontCard"
-      :class="getClasses()"
-      :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
-      @click.prevent="shiftStack()"
-    >
-      ACTIVE_CARD_PLACEHOLDER
+  <div>
+    <div class="stack relative">
+      <div
+        v-if="showBackCard"
+        :class="getClasses()"
+        :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
+      ></div>
+      <div
+        v-for="index in stackDepth"
+        :key="index"
+        :class="getClasses()"
+        :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
+      >
+        {{ nextCard.frontText }}
+      </div>
+      <div
+        v-if="showFrontCard"
+        :class="getClasses()"
+        :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
+      >
+        ACTIVE_CARD_PLACEHOLDER
+      </div>
     </div>
   </div>
 </template>
@@ -47,8 +48,12 @@ export default defineComponent({
       required: false,
       default: 5,
     },
+    stackMoveTime: {
+      type: Number,
+      default: 400,
+    },
   },
-  setup(props, { emit }) {
+  setup(props) {
     const MAX_STACK = 10;
     const maxDepth = props.maxDepth > MAX_STACK ? MAX_STACK : props.maxDepth;
     const stackDepth = ref(
@@ -59,7 +64,6 @@ export default defineComponent({
       stackDepth.value -= 1;
     }
 
-    const stackMoveTime = 400;
     const showFrontCard = ref(true);
     const showBackCard = ref(false);
 
@@ -71,9 +75,6 @@ export default defineComponent({
       if (stackDepth.value === 0) return;
       showFrontCard.value = false;
       showBackCard.value = true;
-      setTimeout(() => {
-        emit("ready");
-      }, stackMoveTime);
     }
 
     function getClasses() {
@@ -82,7 +83,6 @@ export default defineComponent({
 
     return {
       stackDepth,
-      stackMoveTime,
       showFrontCard,
       showBackCard,
       shiftStack,

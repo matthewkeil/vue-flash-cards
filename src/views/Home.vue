@@ -1,24 +1,41 @@
 <template>
-  <div class="container">
-    <CardStack
-      :key="nextCardIndex"
-      :nextCard="nextCard"
-      :cardsRemaining="cardsRemaining"
-      :maxDepth="5"
-      @ready="getNextCard"
-    />
+  <div>
+    <button class="bg-white p-2 m-2" @click.prevent="wrongAnswer()">
+      wrong answer
+    </button>
+    <button class="bg-white p-2 m-2" @click.prevent="correctAnswer()">correct</button>
+    <div class="container">
+      <CardStack
+        :key="nextCardIndex"
+        :nextCard="nextCard"
+        :cardsRemaining="cardsRemaining"
+        :maxDepth="5"
+        :stackMoveTime="moveTime"
+        class="absolute"
+        ref="cardStackRef"
+      />
+      <ActiveCard
+        :key="activeCardIndex"
+        :activeCard="activeCard"
+        :frontToBackTime="moveTime"
+        :flipDownTime="moveTime"
+        class="absolute"
+        ref="activeCardRef"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-// import FlashCard from "../components/FlashCard.vue";
+import ActiveCard from "../components/ActiveCard.vue";
 import CardStack, { Card } from "../components/CardStack.vue";
 
 export default defineComponent({
   name: "Home",
   components: {
     CardStack,
+    ActiveCard,
   },
   setup() {
     const cards: Card[] = [
@@ -84,29 +101,61 @@ export default defineComponent({
       },
     ];
 
-    const currentCardIndex = ref(0);
+    const activeCardIndex = ref(0);
     const nextCardIndex = ref(1);
     const cardsRemaining = ref(cards.length - (nextCardIndex.value + 1));
 
-    const currentCard = ref(cards[currentCardIndex.value]);
+    const activeCard = ref(cards[activeCardIndex.value]);
     const nextCard = ref(cards[nextCardIndex.value]);
 
-    function getNextCard() {
-      currentCardIndex.value = nextCardIndex.value;
-      currentCard.value = cards[currentCardIndex.value];
+    function updateCards() {
+      activeCardIndex.value = nextCardIndex.value;
+      activeCard.value = cards[activeCardIndex.value];
       nextCardIndex.value += 1;
       nextCard.value = cards[nextCardIndex.value];
       cardsRemaining.value = cards.length - (nextCardIndex.value + 1);
     }
 
+    const moveTime = 800;
+    const cardStackRef = ref<InstanceType<typeof CardStack>>(null as any);
+    const activeCardRef = ref<InstanceType<typeof ActiveCard>>(null as any);
+    function wrongAnswer() {
+      activeCardRef.value.frontToBack();
+      cardStackRef.value.shiftStack();
+      setTimeout(() => {
+        updateCards();
+      }, moveTime);
+    }
+
+    function correctAnswer() {
+      activeCardRef.value.flipDown();
+      cardStackRef.value.shiftStack();
+      setTimeout(() => {
+        updateCards();
+      }, moveTime);
+    }
+
+
+
     return {
-      currentCardIndex,
-      currentCard,
+      activeCard,
       nextCardIndex,
       nextCard,
-      getNextCard,
+      wrongAnswer,
+      correctAnswer,
       cardsRemaining,
+      activeCardIndex,
+      activeCardRef,
+      cardStackRef,
+      moveTime,
     };
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.container {
+  padding-top: 300px;
+  margin-left: 300px;
+}
+</style>

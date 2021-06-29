@@ -12,10 +12,11 @@
   width: 100vw;
   height: 100vh;
   background-color: gray;
-  display: grid;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
+  position: relative;
+  // display: grid;
+  // justify-content: center;
+  // align-items: center;
 }
 
 #nav {
