@@ -1,16 +1,6 @@
 <template>
   <div
-    class="
-      card
-      relative
-      grid
-      w-full
-      h-full
-      justify-center
-      items-center
-      rounded-3xl
-      bg-white
-    "
+    class="container"
     :style="{
       '--front-to-back-time': `${frontToBackTime}ms`,
       '--flip-down-time': `${flipDownTime}ms`,
@@ -21,7 +11,20 @@
     }"
     @click.prevent="flipCard()"
   >
-    {{ activeCard.frontText }}
+    <!-- grid
+      w-full
+      h-full
+      rounded-3xl
+      bg-white -->
+    <div class="card absolute w-full h-full" :class="{ flipped: isFlipped }">
+      <div class="front absolute w-full h-full bg-gray-300">
+        {{ activeCard.frontText }}
+      </div>
+      <div class="back absolute w-full h-full bg-gray-300">
+        {{ activeCard.backText }}
+      </div>
+    </div>
+
     <!-- <div
       :class="{ flipped: isFlipped }"
       class="front absolute w-full h-full bg-gray-300"
@@ -91,7 +94,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.card {
+.container {
+  position: relative;
   width: 40rem;
   height: 26rem;
   z-index: 2;
@@ -100,8 +104,9 @@ export default defineComponent({
     0 15px 20px 0 rgba(78, 78, 78, 0.1);
 }
 
-.cardface {
+.card {
   transform-style: preserve-3d;
+  transition: transform 0.5s;
 }
 
 .front,
