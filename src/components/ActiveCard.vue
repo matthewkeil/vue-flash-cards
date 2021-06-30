@@ -62,10 +62,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, PropType } from "vue";
-export interface Card {
-  frontText: string;
-  backText: string;
-}
+import { Card } from "../store";
 
 export default defineComponent({
   props: {
@@ -145,7 +142,7 @@ export default defineComponent({
   animation-name: frontToBackAnimation;
   animation-direction: normal;
   animation-duration: var(--front-to-back-time);
-  animation-timing-function: ease;
+  animation-timing-function: ease-in-out;
 }
 @keyframes frontToBackAnimation {
   50% {
@@ -161,12 +158,16 @@ export default defineComponent({
   animation-name: flipDownAnimation;
   animation-direction: normal;
   animation-duration: var(--flip-down-time);
-  animation-timing-function: ease;
+  animation-timing-function: ease-out;
 }
 @keyframes flipDownAnimation {
+  80% {
+    opacity: 80%;
+  }
   100% {
-    transform: translate(10%, 200%) scale(1.3) rotateX(-130deg) rotateY(15deg);
+    transform: translate(10%, 150%) scale(1.3) rotateX(90deg) rotateY(-15deg);
     z-index: 1;
+    opacity: 0;
   }
 }
 </style>

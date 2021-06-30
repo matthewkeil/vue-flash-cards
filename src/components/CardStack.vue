@@ -28,10 +28,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, PropType } from "vue";
-export interface Card {
-  frontText: string;
-  backText: string;
-}
+import { Card } from "../store";
 
 export default defineComponent({
   props: {
@@ -57,23 +54,22 @@ export default defineComponent({
   setup(props) {
     const MAX_STACK = 10;
     const maxDepth = props.maxDepth > MAX_STACK ? MAX_STACK : props.maxDepth;
-    const stackDepth = ref(
-      props.cardsRemaining > maxDepth ? maxDepth : props.cardsRemaining
-    );
+    let stackDepth =
+      props.cardsRemaining > maxDepth ? maxDepth : props.cardsRemaining;
 
-    if (stackDepth.value > 1) {
-      stackDepth.value -= 1;
+    if (stackDepth > 1) {
+      stackDepth -= 1;
     }
 
     const showFrontCard = ref(true);
     const showBackCard = ref(false);
 
-    if (stackDepth.value === 0) {
+    if (stackDepth === 0) {
       showFrontCard.value = false;
     }
 
     function shiftStack() {
-      if (stackDepth.value === 0) return;
+      if (stackDepth === 0) return;
       showFrontCard.value = false;
       showBackCard.value = true;
     }

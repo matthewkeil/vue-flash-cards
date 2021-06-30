@@ -3,13 +3,15 @@
     <button class="bg-white p-2 m-2" @click.prevent="wrongAnswer()">
       wrong answer
     </button>
-    <button class="bg-white p-2 m-2" @click.prevent="correctAnswer()">correct</button>
+    <button class="bg-white p-2 m-2" @click.prevent="correctAnswer()">
+      correct
+    </button>
     <div class="container">
       <CardStack
         :key="nextCardIndex"
         :nextCard="nextCard"
         :cardsRemaining="cardsRemaining"
-        :maxDepth="5"
+        :maxDepth="10"
         :stackMoveTime="moveTime"
         class="absolute"
         ref="cardStackRef"
@@ -27,9 +29,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
+import { useStore } from "vuex";
 import ActiveCard from "../components/ActiveCard.vue";
-import CardStack, { Card } from "../components/CardStack.vue";
+import CardStack from "../components/CardStack.vue";
 
 export default defineComponent({
   name: "Home",
@@ -38,92 +41,25 @@ export default defineComponent({
     ActiveCard,
   },
   setup() {
-    const cards: Card[] = [
-      {
-        frontText: "1",
-        backText: "back",
-      },
-      {
-        frontText: "2",
-        backText: "back",
-      },
-      {
-        frontText: "3",
-        backText: "back",
-      },
-      {
-        frontText: "4",
-        backText: "back",
-      },
-      {
-        frontText: "5",
-        backText: "back",
-      },
-      {
-        frontText: "6",
-        backText: "back",
-      },
-      {
-        frontText: "7",
-        backText: "back",
-      },
-      {
-        frontText: "8",
-        backText: "back",
-      },
-      {
-        frontText: "9",
-        backText: "back",
-      },
-      {
-        frontText: "10",
-        backText: "back",
-      },
-      {
-        frontText: "11",
-        backText: "back",
-      },
-      {
-        frontText: "12",
-        backText: "back",
-      },
-      {
-        frontText: "13",
-        backText: "back",
-      },
-      {
-        frontText: "14",
-        backText: "back",
-      },
-      {
-        frontText: "15",
-        backText: "back",
-      },
-    ];
-
-    const activeCardIndex = ref(0);
-    const nextCardIndex = ref(1);
-    const cardsRemaining = ref(cards.length - (nextCardIndex.value + 1));
-
-    const activeCard = ref(cards[activeCardIndex.value]);
-    const nextCard = ref(cards[nextCardIndex.value]);
-
-    function updateCards() {
-      activeCardIndex.value = nextCardIndex.value;
-      activeCard.value = cards[activeCardIndex.value];
-      nextCardIndex.value += 1;
-      nextCard.value = cards[nextCardIndex.value];
-      cardsRemaining.value = cards.length - (nextCardIndex.value + 1);
-    }
-
-    const moveTime = 800;
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     const cardStackRef = ref<InstanceType<typeof CardStack>>(null as any);
     const activeCardRef = ref<InstanceType<typeof ActiveCard>>(null as any);
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+
+    const store = useStore();
+    const activeCardIndex = computed(() => store.state.activeCardIndex);
+    const activeCard = computed(() => store.getters.activeCard);
+    const nextCardIndex = computed(() => store.state.nextCardIndex);
+    const nextCard = computed(() => store.getters.nextCard);
+    const cardsRemaining = computed(() => store.getters.cardsRemaining);
+
+    const moveTime = 800;
+
     function wrongAnswer() {
       activeCardRef.value.frontToBack();
       cardStackRef.value.shiftStack();
       setTimeout(() => {
-        updateCards();
+        store.commit("UPDATE_CARD_INDEXES");
       }, moveTime);
     }
 
@@ -131,11 +67,9 @@ export default defineComponent({
       activeCardRef.value.flipDown();
       cardStackRef.value.shiftStack();
       setTimeout(() => {
-        updateCards();
+        store.commit("UPDATE_CARD_INDEXES");
       }, moveTime);
     }
-
-
 
     return {
       activeCard,
