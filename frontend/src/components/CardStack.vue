@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="stack relative">
+  <div class="absolute">
+    <div class="relative w-full h-full">
       <div
         v-if="showBackCard"
         class="bg-white"
@@ -90,10 +90,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.stack {
-  width: 40rem;
-  height: 26rem;
-}
 .card {
   z-index: 2;
   transition: all var(--stack-move-time);

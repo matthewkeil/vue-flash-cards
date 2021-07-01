@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="absolute">
     <div
-      class="container relative bg-transparent"
+      class="container relative w-full h-full bg-transparent"
       :style="{
         '--front-to-back-time': `${frontToBackTime}ms`,
         '--flip-down-time': `${flipDownTime}ms`,
@@ -115,8 +115,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .container {
-  width: 40rem;
-  height: 26rem;
   z-index: 2;
   transition: all var(--stack-move-time);
   box-shadow: 0 5px 10px 0 rgba(78, 78, 78, 0.2),
