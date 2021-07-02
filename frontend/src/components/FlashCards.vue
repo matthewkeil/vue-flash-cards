@@ -1,5 +1,5 @@
 <template>
-  <div class="stack-container">
+  <div class="stack-container relative">
     <CardStack
       :key="nextCardIndex"
       :nextCard="nextCard"
@@ -17,12 +17,13 @@
       ref="activeCardRef"
       class="stack"
     />
+    {{ getMaxDepth() }}
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, ref } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "../store";
 import ActiveCard from "./ActiveCard.vue";
 import CardStack from "./CardStack.vue";
 
@@ -31,6 +32,11 @@ export default defineComponent({
   components: {
     CardStack,
     ActiveCard,
+  },
+  methods: {
+    getMaxDepth() {
+      this.$viewport.getOrientation();
+    },
   },
   setup() {
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -81,14 +87,60 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .stack-container {
-  margin: 2.2rem auto;
-  padding-top: 2.2rem;
-  height: 28.2rem;
-  max-width: 40rem;
+  margin-top: 2.1rem;
+  margin-right: auto;
+  margin-left: auto;
+  height: 80%;
+  width: 100%;
 }
 
 .stack {
-  width: 40rem;
-  height: 26rem;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (min-width: 568px) {
+  // .stack-container {
+  //   margin: 2.2rem auto;
+  //   padding-top: 2.2rem;
+  //   height: 28.2rem;
+  //   max-width: 40rem;
+  // }
+
+  // .stack {
+  //   width: 40rem;
+  //   height: 26rem;
+  // }
+}
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 992px) {
+  .stack-container {
+    margin: 2.2rem auto;
+    padding-top: 2.2rem;
+    height: 28.2rem;
+    max-width: 40rem;
+  }
+
+  .stack {
+    width: 40rem;
+    height: 26rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .stack-container {
+    margin: 2.2rem auto;
+    padding-top: 2.2rem;
+    height: 28.2rem;
+    max-width: 40rem;
+  }
+
+  .stack {
+    width: 40rem;
+    height: 26rem;
+  }
 }
 </style>

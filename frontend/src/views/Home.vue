@@ -17,10 +17,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
-import { useStore } from "vuex";
-import ActiveCard from "../components/ActiveCard.vue";
-import CardStack from "../components/CardStack.vue";
+import { defineComponent, ref } from "vue";
 import FlashCards from "../components/FlashCards.vue";
 
 export default defineComponent({
@@ -43,14 +40,29 @@ export default defineComponent({
 <style lang="scss" scoped>
 .container {
   position: relative;
-  min-width: 100%;
+  margin: 0 auto;
+  width: 95%;
   height: 100vh;
+  padding-top: 2%;
   overflow: hidden;
-  background-color: gray;
-  // display: grid;
-  // justify-content: center;
-  // align-items: center;
-  // padding-top: 300px;
-  // margin-left: 300px;
+}
+// min-width: 100%;
+// display: grid;
+// justify-content: center;
+// align-items: center;
+// padding-top: 300px;
+// margin-left: 300px;
+
+@media only screen and (min-width: 768px) {
+  // .container {
+  //   width: 90%;
+  //   margin: 0 auto;
+  // }
+}
+
+@media only screen and (min-width: 992px) {
+}
+
+@media only screen and (min-width: 1200px) {
 }
 </style>
