@@ -15,11 +15,6 @@ import {
  *
  *
  */
-export interface Card {
-  frontText: string;
-  backText: string;
-}
-
 const state = {
   cards: [
     {
@@ -66,7 +61,10 @@ const state = {
   activeCardIndex: 0,
   nextCardIndex: 1,
 };
-
+export interface Card {
+  frontText: string;
+  backText: string;
+}
 type State = typeof state;
 
 /**
@@ -89,16 +87,14 @@ const mutations = {
 };
 
 type Mutation = keyof typeof mutations;
-
 type MutationPayload<K extends Mutation = Mutation> = Parameters<
   typeof mutations[K]
 >[1];
-
-type Commit = (
-  key: Mutation,
+type Commit = <K extends Mutation = Mutation>(
+  key: K,
   payload?: MutationPayload,
   options?: CommitOptions
-) => void;
+) => ReturnType<typeof mutations[K]>;
 
 /**
  *
@@ -116,18 +112,16 @@ const actions = {
 type ActionContext = {
   commit(key: Mutation, payload: MutationPayload): void;
 } & Omit<BaseActionContext<State, State>, "commit">;
-
 type Action = keyof typeof actions;
-
 type ActionPayload<K extends Action = Action> = Parameters<
   typeof actions[K]
 >[1];
-
-type Dispatch = (
-  key: Action,
+type Dispatch = <K extends Action = Action>(
+  key: K,
   payload?: ActionPayload,
   options?: DispatchOptions
-) => void;
+) => ReturnType<typeof actions[K]>;
+
 /**
  *
  *
@@ -143,8 +137,13 @@ const getters = {
     return state.cards[state.nextCardIndex];
   },
   cardsRemaining(state: State) {
-    return state.cards.length - (state.nextCardIndex + 1);
+    const remaining = state.cards.length - (state.nextCardIndex);
+    console.log(state.cards.length, state.nextCardIndex, remaining);
+    return remaining
   },
+};
+type Getters = {
+  [L in keyof typeof getters]: ReturnType<typeof getters[L]>;
 };
 
 /**
@@ -154,26 +153,22 @@ const getters = {
  *
  *
  */
-export type Store = Omit<
-  BaseStore<State>,
-  "commit" | "getters" | "dispatch"
-> & {
-  commit: Commit;
-  dispatch: Dispatch;
-  getters: {
-    [L in keyof typeof getters]: ReturnType<typeof getters[L]>;
-  };
-};
-
 export const store = createStore({
   state,
   mutations,
   getters,
   actions,
 });
-
-export const key: InjectionKey<Store> = Symbol();
-
 export function useStore(): Store {
   return USE_STORE(key);
 }
+
+export type Store = Omit<
+  BaseStore<State>,
+  "commit" | "getters" | "dispatch"
+> & {
+  commit: Commit;
+  dispatch: Dispatch;
+  getters: Getters;
+};
+export const key: InjectionKey<Store> = Symbol();

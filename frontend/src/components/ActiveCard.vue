@@ -38,7 +38,7 @@
             bg-white
           "
         >
-          {{ activeCard.frontText }}
+          <slot name="front" />
         </div>
         <div
           class="
@@ -53,7 +53,7 @@
             bg-white
           "
         >
-          {{ activeCard.backText }}
+          <slot name="back" />
         </div>
       </div>
     </div>
@@ -61,22 +61,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, PropType } from "vue";
-import { Card } from "../store";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   props: {
-    activeCard: {
-      type: Object as PropType<Card>,
-      required: true,
-    },
     frontToBackTime: {
       type: Number,
-      default: 800,
+      required: true,
     },
     flipDownTime: {
       type: Number,
-      default: 800,
+      required: true,
     },
   },
   setup(props) {

@@ -1,0 +1,101 @@
+
+type SpanishConjugation {
+    singularFirst: string;
+    singularSecond: string;
+    singularThird: string;
+    pluralFirst: string;
+    pluralSecond: string;
+    pluralThird: string;
+}
+
+type SpanishVerb {
+    translation: String;
+    
+    # to eat
+    infinitive: String;
+    
+    # eating
+    gerund: String;
+
+    # eaten
+    pastParticiple: String;
+
+    # eat
+    imperative: SpanishConjugation;
+
+    indicative: {
+        present: SpanishConjugation;
+        perfect: String;
+        imperfect: SpanishConjugation;
+        preterite: SpanishConjugation;
+        preteriteAnterior: String;
+        pluperfect: String;
+        future: SpanishConjugation;
+        futurePerfect: String;
+        conditional: SpanishConjugation;
+        perfectConditional: String;
+    }
+
+    subjunctive: {
+        present: SpanishConjugation;
+        perfect: String;
+        imperfect: SpanishConjugation;
+        pluperfect: String;
+        future: SpanishConjugation;
+    }
+    # I eat lunch at noon
+    presentIndicative: SpanishConjugation; 
+    
+    # I was eating but you are here and I don't want to be rude
+    imperfectIndicative: SpanishConjugation;
+
+    # I ate a while ago
+    past: SpanishConjugation;
+
+    # I will eat in a few hours
+    future: SpanishConjugation;
+
+    # I would eat but I'm not sure if they are open
+    conditional: SpanishConjugation; # conditional
+
+    # Do you have something that I can eat?
+    presentSubjunctive: SpanishConjugation;
+
+    # I might eat that if I was starving but will pass
+    imperfectSubjunctive: SpanishConjugation;
+
+    # I have eaten already.
+    perfectIndicative: SpanishConjugation; # present perfect indicative
+    
+    # I had eaten before they asked me to join.
+    pluperfectIndicative: SpanishConjugation; # past perfect indicative / pluperfect
+    
+    # After I had eaten, I asked for a drink (use tense above in conversation)
+    pastAnterior: SpanishConjugation; # past anterior / preterit perfect ?
+    
+    # I will have eaten by time you get here.
+    futurePerfect: SpanishConjugation; # future perfect / future anterior
+
+    # I would have eaten if they were open.
+    conditionalPerfect: SpanishConjugation;  # conditional perfect
+    
+    # I may have eaten it already
+    perfectSubjunctive: SpanishConjugation; # present perfect / past subjunctive
+    
+    # Is it from something that you might have eaten?
+    pluperfectSubjunctive: SpanishConjugation; # past perfect subjunctive   
+}
+
+
+type Query {
+
+}
+
+type Mutation {
+
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+}

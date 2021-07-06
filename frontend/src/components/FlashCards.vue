@@ -1,85 +1,122 @@
 <template>
   <div class="stack-container relative">
     <CardStack
-      :key="nextCardIndex"
-      :nextCard="nextCard"
+      :key="nextCardIndex + renderTrigger"
       :cardsRemaining="cardsRemaining"
-      :maxDepth="10"
-      :stackMoveTime="moveTime"
+      :maxDepth="actualMaxDepth"
+      :stackMoveTime="stackMoveTime"
       ref="cardStackRef"
       class="stack"
-    />
+    >
+      <template v-slot:next>
+        <slot name="next" />
+      </template>
+    </CardStack>
     <ActiveCard
       :key="activeCardIndex"
-      :activeCard="activeCard"
-      :frontToBackTime="moveTime"
-      :flipDownTime="moveTime"
+      :frontToBackTime="frontToBackTime"
+      :flipDownTime="flipDownTime"
       ref="activeCardRef"
       class="stack"
-    />
-    {{ getMaxDepth() }}
+    >
+      <template v-slot:front>
+        <slot name="front" />
+      </template>
+      <template v-slot:back>
+        <slot name="back" />
+      </template>
+    </ActiveCard>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
-import { useStore } from "../store";
+import {
+  defineComponent,
+  getCurrentInstance,
+  Ref,
+  ref,
+  watch,
+  watchEffect,
+} from "vue";
+import { Breakpoint, Orientation } from "../plugins/viewport";
 import ActiveCard from "./ActiveCard.vue";
 import CardStack from "./CardStack.vue";
 
 export default defineComponent({
-  name: "Home",
   components: {
     CardStack,
     ActiveCard,
   },
-  methods: {
-    getMaxDepth() {
-      this.$viewport.getOrientation();
+  props: {
+    nextCardIndex: {
+      type: Number,
+      required: true,
+    },
+    activeCardIndex: {
+      type: Number,
+      required: true,
+    },
+    cardsRemaining: {
+      type: Number,
+      required: false,
+    },
+    maxDepth: {
+      type: Number,
+      required: false,
+    },
+    frontToBackTime: {
+      type: Number,
+      default: 800,
+    },
+    flipDownTime: {
+      type: Number,
+      default: 800,
     },
   },
-  setup() {
+  setup(props) {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const cardStackRef = ref<InstanceType<typeof CardStack>>(null as any);
     const activeCardRef = ref<InstanceType<typeof ActiveCard>>(null as any);
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
-    const store = useStore();
-    const activeCardIndex = computed(() => store.state.activeCardIndex);
-    const activeCard = computed(() => store.getters.activeCard);
-    const nextCardIndex = computed(() => store.state.nextCardIndex);
-    const nextCard = computed(() => store.getters.nextCard);
-    const cardsRemaining = computed(() => store.getters.cardsRemaining);
+    const stackMoveTime = ref(props.frontToBackTime);
 
-    const moveTime = 800;
+    const instance = getCurrentInstance();
+    const actualMaxDepth = ref(5);
+    const renderTrigger = ref(0);
 
-    function wrongAnswer() {
+    const breakpoint = instance?.appContext.config.globalProperties.$viewport
+      .breakpoint as Ref<Breakpoint>;
+    const orientation = instance?.appContext.app.config.globalProperties
+      .$viewport.orientation as Ref<Orientation>;
+    watch([breakpoint, orientation], () => {
+      const deepest =
+        breakpoint.value === "sm" && orientation.value === "landscape" ? 5 : 10;
+      actualMaxDepth.value =
+        !props.maxDepth || props.maxDepth > deepest ? deepest : props.maxDepth;
+      renderTrigger.value += 1;
+    });
+
+    function frontToBack() {
+      stackMoveTime.value = props.frontToBackTime;
       activeCardRef.value.frontToBack();
       cardStackRef.value.shiftStack();
-      setTimeout(() => {
-        store.commit("UPDATE_CARD_INDEXES");
-      }, moveTime);
     }
 
-    function correctAnswer() {
+    function flipDown() {
+      stackMoveTime.value = props.flipDownTime;
       activeCardRef.value.flipDown();
       cardStackRef.value.shiftStack();
-      setTimeout(() => {
-        store.commit("UPDATE_CARD_INDEXES");
-      }, moveTime);
     }
 
     return {
-      activeCard,
-      nextCardIndex,
-      nextCard,
-      wrongAnswer,
-      correctAnswer,
-      cardsRemaining,
-      activeCardIndex,
       activeCardRef,
       cardStackRef,
-      moveTime,
+      frontToBack,
+      flipDown,
+      stackMoveTime,
+      actualMaxDepth,
+      renderTrigger,
     };
   },
 });

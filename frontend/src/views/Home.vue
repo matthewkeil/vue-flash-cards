@@ -1,23 +1,30 @@
 <template>
   <div class="container">
-    <FlashCards ref="flashCardsRef" />
-    <button
-      class="bg-white p-2 m-2"
-      @click.prevent="flashCardsRef.wrongAnswer()"
+    <FlashCards
+      ref="flashCardsRef"
+      :activeCardIndex="activeCardIndex"
+      :nextCardIndex="nextCardIndex"
+      :cardsRemaining="cardsRemaining"
+      :frontToBackTime="moveTime"
+      :flipDownTime="moveTime"
+      :maxDepth="10"
     >
+      <template v-slot:front>{{ activeCard.frontText }}</template>
+      <template v-slot:back>{{ activeCard.backText }}</template>
+      <template v-slot:next>{{ nextCard.frontText }}</template>
+    </FlashCards>
+    <button class="bg-white p-2 m-2" @click.prevent="wrongAnswer()">
       wrong answer
     </button>
-    <button
-      class="bg-white p-2 m-2"
-      @click.prevent="flashCardsRef.correctAnswer()"
-    >
+    <button class="bg-white p-2 m-2" @click.prevent="correctAnswer()">
       correct
     </button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
+import { useStore } from "../store";
 import FlashCards from "../components/FlashCards.vue";
 
 export default defineComponent({
@@ -30,8 +37,38 @@ export default defineComponent({
     const flashCardsRef = ref<InstanceType<typeof FlashCards>>(null as any);
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
+    const moveTime = 800;
+    const store = useStore();
+    const activeCardIndex = computed(() => store.state.activeCardIndex);
+    const nextCardIndex = computed(() => store.state.nextCardIndex);
+    const cardsRemaining = computed(() => store.getters.cardsRemaining);
+    const activeCard = computed(() => store.getters.activeCard);
+    const nextCard = computed(() => store.getters.nextCard);
+
+    function wrongAnswer() {
+      flashCardsRef.value.frontToBack();
+      setTimeout(() => {
+        store.commit("UPDATE_CARD_INDEXES");
+      }, moveTime);
+    }
+
+    function correctAnswer() {
+      flashCardsRef.value.flipDown();
+      setTimeout(() => {
+        store.commit("UPDATE_CARD_INDEXES");
+      }, moveTime);
+    }
+
     return {
       flashCardsRef,
+      moveTime,
+      activeCard,
+      activeCardIndex,
+      nextCard,
+      nextCardIndex,
+      cardsRemaining,
+      wrongAnswer,
+      correctAnswer,
     };
   },
 });

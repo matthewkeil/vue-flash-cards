@@ -14,7 +14,7 @@
         :class="getClasses()"
         :style="{ '--stack-move-time': `${stackMoveTime}ms` }"
       >
-        {{ nextCard.frontText }}
+        <slot name="next" />
       </div>
       <div
         v-if="showFrontCard"
@@ -27,51 +27,42 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, PropType } from "vue";
-import { Card } from "../store";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   props: {
-    nextCard: {
-      type: Object as PropType<Card>,
-      required: true,
-    },
     cardsRemaining: {
       type: Number,
-      required: false,
-      default: 5,
+      required: true,
     },
     maxDepth: {
       type: Number,
-      required: false,
-      default: 5,
+      required: true,
     },
     stackMoveTime: {
       type: Number,
-      default: 400,
+      required: true,
     },
   },
   setup(props) {
-    const MAX_STACK = 10;
-    const maxDepth = props.maxDepth > MAX_STACK ? MAX_STACK : props.maxDepth;
     let stackDepth =
-      props.cardsRemaining > maxDepth ? maxDepth : props.cardsRemaining;
+      props.cardsRemaining < props.maxDepth
+        ? props.cardsRemaining
+        : props.maxDepth;
 
     if (stackDepth > 1) {
       stackDepth -= 1;
     }
 
-    const showFrontCard = ref(true);
+    const showFrontCard = ref(!!stackDepth);
     const showBackCard = ref(false);
-
-    if (stackDepth === 0) {
-      showFrontCard.value = false;
-    }
 
     function shiftStack() {
       if (stackDepth === 0) return;
+      if (props.cardsRemaining > props.maxDepth && props.cardsRemaining > 0) {
+        showBackCard.value = true;
+      }
       showFrontCard.value = false;
-      showBackCard.value = true;
     }
 
     function getClasses() {
