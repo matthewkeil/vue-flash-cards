@@ -8,6 +8,28 @@ type SimplePronoun = "yo" | "tu" | "nosotros" | "vosotros";
 type ThirdPersonSingular = "usted" | "el" | "ella";
 type ThirdPersonPlural = "ustedes" | "ellos" | "ellas";
 type Pronoun = SimplePronoun | ThirdPersonSingular | ThirdPersonPlural;
+const pronomialPrefixes = {
+  yo: "me",
+  tu: "te",
+  usted: "se",
+  el: "se",
+  ella: "se",
+  nosotros: "nos",
+  vosotros: "vos",
+  ustedes: "se",
+  ellos: "se",
+  ellas: "se",
+};
+function addPronoun(set: ConjugationSet, reflexive: boolean) {
+  const newSet = {} as ConjugationSet;
+  for (const [pronoun, verb] of Object.entries(set)) {
+    const firstWord = !reflexive
+      ? pronoun
+      : pronomialPrefixes[pronoun as Pronoun];
+    newSet[pronoun as Pronoun] = `${firstWord} ${verb}`;
+  }
+  return newSet;
+}
 
 type ConjugationSet = { [key in SimplePronoun]: string } &
   Partial<
@@ -89,10 +111,13 @@ function buildSimpleTense(root: string, suffixes: string[]) {
   }
   return conjugated;
 }
-function conjugateSimple({ root, verbEnding }: VerbComponents) {
+function conjugateSimple({ root, verbEnding, reflexive }: VerbComponents) {
   const conjugation: any = {};
   for (const [tense, suffixes] of Object.entries(verbSuffixes[verbEnding])) {
-    conjugation[tense] = buildSimpleTense(root, suffixes);
+    conjugation[tense] = addPronoun(
+      buildSimpleTense(root, suffixes),
+      reflexive
+    );
   }
   return conjugation as SimpleConjugation;
 }
@@ -147,10 +172,13 @@ function buildComplexTense(pastParticiple: string, prefixes: string[]) {
     ustedes: `${prefixes[5]} ${pastParticiple}`,
   } as ConjugationSet;
 }
-function conjugateComplex(pastParticiple: string) {
+function conjugateComplex(pastParticiple: string, reflexive: boolean) {
   const conjugation: any = {};
   for (const [tense, prefixes] of Object.entries(haberConjugation)) {
-    conjugation[tense] = buildComplexTense(pastParticiple, prefixes);
+    conjugation[tense] = addPronoun(
+      buildComplexTense(pastParticiple, prefixes),
+      reflexive
+    );
   }
   return conjugation as ComplexConjugation;
 }
@@ -171,7 +199,7 @@ function buildImperativeSuffixes() {
   }
 }
 buildImperativeSuffixes();
-function buildImperative({ root, verbEnding, reflexive }: VerbComponents) {
+function conjugateImperative({ root, verbEnding, reflexive }: VerbComponents) {
   const suffixes =
     imperativeSuffixes[verbEnding as keyof typeof imperativeSuffixes];
   if (reflexive) {
@@ -200,30 +228,6 @@ function buildImperative({ root, verbEnding, reflexive }: VerbComponents) {
   };
 }
 
-const pronomialPrefixes = {
-  yo: "me",
-  tu: "te",
-  usted: "se",
-  el: "se",
-  ella: "se",
-  nosotros: "nos",
-  vosotros: "vos",
-  ustedes: "se",
-  ellos: "se",
-  ellas: "se",
-};
-
-function addPronoun(set: ConjugationSet, reflexive: boolean) {
-  const newSet = {} as ConjugationSet;
-  for (const [pronoun, verb] of Object.entries(set)) {
-    const firstWord = reflexive
-      ? pronoun
-      : pronomialPrefixes[pronoun as Pronoun];
-    newSet[pronoun as Pronoun] = `${firstWord} ${verb}`;
-  }
-  return newSet;
-}
-
 function buildGerund({ root, verbEnding, reflexive }: VerbComponents) {
   let suffix;
   if (verbEnding.startsWith("a")) {
@@ -241,6 +245,15 @@ function buildPastParticiple({ root, verbEnding }: VerbComponents) {
   return root + "ido";
 }
 
+function iarEnding() {}
+function uarEnding() {}
+function earEnding() {}
+function cerEnding() {}
+function eerEnding() {}
+function cirEnding() {}
+function uirEnding() {}
+function uirEnding() {}
+
 function conjugate(verb: string) {
   let _verb = verb;
   const reflexive = _verb.endsWith("se");
@@ -254,12 +267,18 @@ function conjugate(verb: string) {
   const gerund = buildGerund(components);
   const pastParticiple = buildPastParticiple(components);
   const simpleConjugation = conjugateSimple(components);
-  const complexConjugation = conjugateComplex(pastParticiple);
-  const imperative = buildImperative(components);
-  console.log(imperative);
+  const complexConjugation = conjugateComplex(pastParticiple, reflexive);
+  const imperative = conjugateImperative(components);
+  console.log({
+    gerund,
+    pastParticiple,
+    simpleConjugation,
+    complexConjugation,
+    imperative,
+  });
 }
 
-conjugate("apoderarse");
+conjugate("aburrirse");
 
 const irregularVerbs = [
   "abastecer",
