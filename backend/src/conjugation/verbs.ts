@@ -348,120 +348,147 @@ const verbs: Verb[] = [
   },
   {
     spanish: "acertar",
-    english: [],
+    english: [
+      "to hit the mark",
+      "to hit upon",
+      "to do (something) right",
+      "to succeed in",
+      "to guess right",
+    ],
     phrases: [
       {
-        sp: "",
-        en: [],
+        sp: "acertado(a)",
+        en: ["proper", "fit", "sensible"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "el(la) acertador(a)",
+        en: ["good guesser"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "acertar a",
+        en: ["to happen to + inf."],
       },
       {
-        sp: "",
-        en: [],
+        sp: "acertar con",
+        en: ["to come across", "to find"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "es cierto",
+        en: ["it's certain", "sure"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "el acertamiento",
+        en: ["tact", "ability"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "el acertijo",
+        en: ["riddle"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "acertadamente",
+        en: ["opportunely", "correctly"],
+      },
+      {
+        sp: "ciertamente",
+        en: ["certainly"],
       },
     ],
   },
   {
     spanish: "aclamar",
-    english: [],
+    english: ["to acclaim", "to applaud", "to shout", "to hail"],
     phrases: [
       {
-        sp: "",
-        en: [],
+        sp: "aclamado(a)",
+        en: ["acclaimed"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "la aclamación",
+        en: ["acclaim", "acclamation"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "aclamable",
+        en: ["laudable"],
       },
       {
-        sp: "",
-        en: [],
-      },
-      {
-        sp: "",
-        en: [],
-      },
-      {
-        sp: "",
-        en: [],
-      },
-      {
-        sp: "",
-        en: [],
-      },
-      {
-        sp: "",
-        en: [],
+        sp: "por aclamación",
+        en: ["unanimously"],
       },
     ],
   },
   {
     spanish: "aclarar",
-    english: [],
+    english: [
+      "to explain",
+      "to clarify",
+      "to make clear",
+      "to rinse",
+      "to clear",
+    ],
     phrases: [
       {
-        sp: "",
-        en: [],
+        sp: "una aclaración",
+        en: ["explanation"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "aclarado(a)",
+        en: ["cleared", "made clear", "rinsed"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "aclarar la voz",
+        en: ["to clear one's throat"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "poner en claro",
+        en: ["to clarify a point", "to put something clearly"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "Clara que sí!",
+        en: ["Of course!"],
       },
       {
-        sp: "",
-        en: [],
+        sp: "Clara que no!",
+        en: ["Of course not!"],
       },
       {
-        sp: "",
-        en: [],
-      },
-      {
-        sp: "",
-        en: [],
+        sp: "Está claro?",
+        en: ["Is that clear?"],
       },
     ],
   },
   {
     spanish: "acompañar",
+    english: ["to accompany", "to escort", "to go with", "to keep company"],
+    phrases: [
+      {
+        sp: "el(la) acompañador(a)",
+        en: ["companion", "chaperon", "accompanist"],
+      },
+      {
+        sp: "el acompañamiento",
+        en: ["accompaniment"],
+      },
+      {
+        sp: "el(la) acompañando(a)",
+        en: ["assistant"],
+      },
+      {
+        sp: "un(a) compañero(a)",
+        en: ["mate", "companion"],
+      },
+      {
+        sp: "compañero de cuarto",
+        en: ["roomate"],
+      },
+      {
+        sp: "compañero de juego",
+        en: ["playmate"],
+      },
+    ],
+  },
+
+  {
+    spanish: "",
     english: [],
     phrases: [
       {
@@ -498,6 +525,55 @@ const verbs: Verb[] = [
       },
     ],
   },
+  {
+    spanish: "",
+    english: [""],
+  },
+
+  /**
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   */
+  {
+    spanish: "",
+    english: [""],
+  },
+  {
+    spanish: "",
+    english: [""],
+  },
+  {
+    spanish: "",
+    english: [""],
+  },
+  {
+    spanish: "",
+    english: [""],
+  },
+  {
+    spanish: "",
+    english: [""],
+  },
+  {
+    spanish: "",
+    english: [""],
+  },
+  {
+    spanish: "",
+    english: [""],
+  },
+  {
+    spanish: "",
+    english: [""],
+  },
+
   {
     spanish: "aceptar",
     english: [],
@@ -764,44 +840,60 @@ const verbs: Verb[] = [
       },
     ],
   },
+
   {
-    spanish: "aceptar",
-    english: [],
-    phrases: [
-      {
-        sp: "",
-        en: [],
-      },
-      {
-        sp: "",
-        en: [],
-      },
-      {
-        sp: "",
-        en: [],
-      },
-      {
-        sp: "",
-        en: [],
-      },
-      {
-        sp: "",
-        en: [],
-      },
-      {
-        sp: "",
-        en: [],
-      },
-      {
-        sp: "",
-        en: [],
-      },
-      {
-        sp: "",
-        en: [],
-      },
-    ],
+    spanish: "abajar",
+    related: ["bajar"],
+    english: ["to go down"],
   },
+  {
+    spanish: "bajar",
+    related: ["abajar"],
+    english: ["to go down"],
+  },
+  {
+    spanish: "abalanzar",
+    english: ["to balance"],
+  },
+  {
+    spanish: "abalanzarse",
+    english: ["to hurl oneself"],
+  },
+  {
+    spanish: "abalar",
+    english: ["to move and shake", "to flail"],
+  },
+  {
+    spanish: "abalear",
+    english: ["to shoot at", "to wound or kill by gunshot"],
+  },
+  {
+    spanish: "abalizar",
+    english: ["to mark with buoys"],
+  },
+  {
+    spanish: "abanar",
+    english: ["to cool with a fan"],
+  },
+  {
+    spanish: "abandonar",
+    english: ["to abandon"],
+  },
+  {
+    spanish: "abanicar",
+    english: ["to fan"],
+  },
+  {
+    spanish: "abaratar",
+    english: ["to make cheaper", "to reduce prices"],
+  },
+  {
+    spanish: "abdicar",
+    english: ["to abdicate"],
+  },
+];
+
+const c: Verb[] = [
   {
     spanish: "cercar",
     english: ["to enclose", "fence in"],
@@ -814,6 +906,27 @@ const verbs: Verb[] = [
       {
         sp: "el cercado",
         en: ["fenced in area"],
+      },
+    ],
+  },
+];
+
+const r: Verb[] = [
+  {
+    spanish: "reclamar",
+    english: ["to claim", "to reclaim"],
+    phrases: [
+      {
+        sp: "la reclamación",
+        en: ["claim", "demand"],
+      },
+      {
+        sp: "reclamar en juicio",
+        en: ["to sue"],
+      },
+      {
+        sp: "reclamar por daños",
+        en: ["to claim damages"],
       },
     ],
   },
