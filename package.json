@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "ts": "node -r ts-node/register"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@vue/cli": "^4.5.13"
+    "@vue/cli": "^4.5.13",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
   }
 }

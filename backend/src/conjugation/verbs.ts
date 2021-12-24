@@ -6,7 +6,6 @@ const radicallyChangingVerbs = {
 };
 
 interface Verb {
-  spanish: string;
   english: string[];
   related?: string[];
   phrases?: {
@@ -15,9 +14,8 @@ interface Verb {
   }[];
 }
 
-const verbs: Verb[] = [
-  {
-    spanish: "abatir",
+const verbs: { [infinitive: string]: Verb } = {
+  abatir: {
     english: ["to knock down", "to overthrow", "to throw down"],
     phrases: [
       {
@@ -46,8 +44,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "abrasar",
+  abrasar: {
     english: ["to burn", "to set on fire"],
     phrases: [
       {
@@ -76,8 +73,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "abrazar",
+  abrazar: {
     english: ["to embrace", "to hug", "to clamp"],
     phrases: [
       {
@@ -98,8 +94,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "abrir",
+  abrir: {
     english: ["to open", "to let in" /*, "to let out"*/],
     phrases: [
       {
@@ -112,8 +107,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "absolver",
+  absolver: {
     english: ["to absolve", "to acquit"],
     phrases: [
       {
@@ -150,8 +144,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "abstenerse",
+  abstenerse: {
     english: ["to abstain"],
     phrases: [
       {
@@ -180,8 +173,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "aburrir",
+  aburrir: {
     english: ["to annoy", "to bore", "to vex"],
     phrases: [
       {
@@ -206,8 +198,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "aburrirse",
+  aburrirse: {
     english: ["to grow bored", "to grow tired of", "to grow weary"],
     phrases: [
       {
@@ -220,8 +211,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "acabar",
+  acabar: {
     english: ["to finish", "to end", "to complete"],
     phrases: [
       {
@@ -242,8 +232,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "acelerar",
+  acelerar: {
     english: ["to accelerate", "to speed", "to hasten", "to hurry"],
     phrases: [
       {
@@ -264,8 +253,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "aceptar",
+  aceptar: {
     english: ["to accept"],
     phrases: [
       {
@@ -302,8 +290,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "acercar",
+  acercar: {
     related: ["cercar", "acercarse"],
     english: ["to bring near", "to place near"],
     phrases: [
@@ -341,13 +328,11 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "acercarse",
+  acercarse: {
     related: ["cercar", "acercar"],
     english: ["to approach", "to draw near", "to get close"],
   },
-  {
-    spanish: "acertar",
+  acertar: {
     english: [
       "to hit the mark",
       "to hit upon",
@@ -394,8 +379,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "aclamar",
+  aclamar: {
     english: ["to acclaim", "to applaud", "to shout", "to hail"],
     phrases: [
       {
@@ -416,8 +400,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "aclarar",
+  aclarar: {
     english: [
       "to explain",
       "to clarify",
@@ -456,8 +439,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "acompañar",
+  acompañar: {
     english: ["to accompany", "to escort", "to go with", "to keep company"],
     phrases: [
       {
@@ -486,9 +468,129 @@ const verbs: Verb[] = [
       },
     ],
   },
-
-  {
-    spanish: "",
+  aconsejar: {
+    english: ["to advise", "to counsel"],
+    phrases: [
+      {
+        sp: "el(la) aconsejado(a)",
+        en: ["adviser", "counselor"],
+      },
+      {
+        sp: "aconsejar con",
+        en: ["to consult"],
+      },
+      {
+        sp: "el consejo",
+        en: ["advice", "counsel"],
+      },
+      {
+        sp: "El tiempo da buen consejo.",
+        en: ["Time will tell."],
+      },
+      {
+        sp: "el aconsejamiento",
+        en: ["counselling"],
+      },
+      {
+        sp: "desaconsejadamente",
+        en: ["ill-advisedly"],
+      },
+      {
+        sp: "el aconsejamiento",
+        en: ["counselling"],
+      },
+    ],
+  },
+  aconsejarse: {
+    english: ["to seek advice"],
+    phrases: [
+      {
+        sp: "aconsejarse de",
+        en: ["to consult with"],
+      },
+    ],
+  },
+  acordar: {
+    related: ["acordarse"],
+    english: ["to agree (upon)"],
+    phrases: [
+      {
+        sp: "al acordada",
+        en: ["decision", "resolution"],
+      },
+      {
+        sp: "acordadamente",
+        en: ["jointly", "by common consent"],
+      },
+      {
+        sp: "un acuerdo",
+        en: ["agreement"],
+      },
+      {
+        sp: "de acuerdo",
+        en: ["in agreement"],
+      },
+      {
+        sp: "de común acuerdo",
+        en: ["unanimously", "by mutual agreement"],
+      },
+      {
+        sp: "estar de acuerdo con",
+        en: ["to be in agreement with"],
+      },
+      {
+        sp: "desacordar",
+        en: ["to put out of tune"],
+      },
+      {
+        sp: "desacordante",
+        en: ["discord"],
+      },
+      {
+        sp: "desacordado(a)",
+        en: ["out of tune (music)"],
+      },
+    ],
+  },
+  acordarse: {
+    related: ["acordar"],
+    english: ["to remember", "to agree"],
+    phrases: [
+      {
+        sp: "si mal no me acuerdo",
+        en: ["if I remmember correctly", "if my memory does not fail me"],
+      },
+      {
+        sp: "descordardse",
+        en: ["to become forgetful"],
+      },
+    ],
+  },
+  acostar: {
+    english: ["to put to bed"],
+    related: ["acostarse"],
+    phrases: [
+      {
+        sp: "el acostamiento",
+        en: ["lying down"],
+      },
+      {
+        sp: "acostado(a)",
+        en: ["in bed", "lying down"],
+      },
+    ],
+  },
+  acostarse: {
+    english: ["to go to bed", "to lie down"],
+    related: ["acostar"],
+    phrases: [
+      {
+        sp: "acostarse con las gallinas",
+        en: ["go bed very early (with the chickens)"],
+      },
+    ],
+  },
+  acostumbrar: {
     english: [],
     phrases: [
       {
@@ -525,57 +627,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "",
-    english: [""],
-  },
-
-  /**
-   *
-   *
-   *
-   *
-   *
-   *
-   *
-   *
-   *
-   */
-  {
-    spanish: "",
-    english: [""],
-  },
-  {
-    spanish: "",
-    english: [""],
-  },
-  {
-    spanish: "",
-    english: [""],
-  },
-  {
-    spanish: "",
-    english: [""],
-  },
-  {
-    spanish: "",
-    english: [""],
-  },
-  {
-    spanish: "",
-    english: [""],
-  },
-  {
-    spanish: "",
-    english: [""],
-  },
-  {
-    spanish: "",
-    english: [""],
-  },
-
-  {
-    spanish: "aceptar",
+  acuchillar: {
     english: [],
     phrases: [
       {
@@ -612,8 +664,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "aceptar",
+  acudir: {
     english: [],
     phrases: [
       {
@@ -650,8 +701,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "aceptar",
+  acusar: {
     english: [],
     phrases: [
       {
@@ -688,8 +738,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "aceptar",
+  adelantar: {
     english: [],
     phrases: [
       {
@@ -726,8 +775,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "aceptar",
+  adelantarse: {
     english: [],
     phrases: [
       {
@@ -764,8 +812,7 @@ const verbs: Verb[] = [
       },
     ],
   },
-  {
-    spanish: "aceptar",
+  adivinar: {
     english: [],
     phrases: [
       {
@@ -802,8 +849,2060 @@ const verbs: Verb[] = [
       },
     ],
   },
+  admirar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  admitir: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  adoptar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  adorar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  adquirir: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  advertir: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  afeitarse: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  agarrar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  agitar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  agotar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  agradar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  agradecer: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  agrandar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  agravar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  agregar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  agrupar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  aguardar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  ahorrar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  alcanzar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  alegrarse: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  almorzar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  alquilar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  alumbrar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  alumbrarse: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  alzar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  amar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  añadir: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  andar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  anunciar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  apagar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  aparecer: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  apaudir: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  apoderarse: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  apreciar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  aprender: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  apresurarse: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  aprobar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  aprovecharse: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  apurarse: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  arrancar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  arreglar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  arrojar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  articular: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  asegurar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  asir: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  asistir: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  asustarse: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  atacar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  atenerse: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  atraer: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  atravesar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  atreverse: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  avanzar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  averiguar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+  ayudar: {
+    english: [],
+    phrases: [
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+      {
+        sp: "",
+        en: [],
+      },
+    ],
+  },
+};
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+const temp = [
   {
-    spanish: "aceptar",
+    spanish: "",
+    english: [""],
+  },
+  {
+    spanish: "",
     english: [],
     phrases: [
       {
