@@ -55,3 +55,53 @@ export const irregularVerbs = [
   "acordar",
   "acostar",
 ];
+
+export const uarVerbs = [
+  { sp: "acentuar", en: "to emphasize, accentuate" },
+  { sp: "actuar", en: "to act" },
+  { sp: "atenuar", en: "to attenuate" },
+  { sp: "conceptuar", en: "to deem" },
+  { sp: "continuar", en: "to continue" },
+  { sp: "desvirtuar", en: "to spoil" },
+  { sp: "efectuar", en: "to carry out, effect" },
+  { sp: "evaluar", en: "to assess, evaluate" },
+  { sp: "exceptuar", en: "to except" },
+  { sp: "extenuar", en: "to emaciate" },
+  { sp: "fluctuar", en: "to fluctuate" },
+  { sp: "graduar", en: "to grade" },
+  { sp: "habituar", en: "to habituate" },
+  { sp: "individuar", en: "to individualize" },
+  { sp: "infatuar", en: "to infatuate" },
+  { sp: "insinuar", en: "to hint, insinuate" },
+  { sp: "menstruar", en: "to menstruate" },
+  { sp: "perpetuar", en: "to perpetuate" },
+  { sp: "preceptuar", en: "to establish, lay down" },
+  { sp: "puntuar", en: "to punctuate, to assess" },
+  { sp: "redituar", en: "to yield (a profit)" },
+  { sp: "situar", en: "to situate" },
+  { sp: "tatuar", en: "to tattoo" },
+  { sp: "valuar", en: "to value" },
+];
+
+export const guarVerbs = [
+  { sp: "aguar", en: "to water" },
+  { sp: "amenguar", en: "to lessen, diminish" },
+  { sp: "amortiguar", en: "to muffle, cushion" },
+  { sp: "apaciguar", en: "to appease" },
+  { sp: "atestiguar", en: "to testify" },
+  { sp: "averiguar", en: "to find out" },
+  { sp: "desaguar", en: "to drain" },
+  { sp: "fraguar", en: "to forge, harden" },
+  { sp: "menguar", en: "to decrease" },
+  { sp: "santiguar", en: "to bless" },
+];
+
+export const cuarVerbs = [
+  { sp: "adecuar", en: "to adapt" },
+  { sp: "anticuar", en: "to antiquate, outdate" },
+  { sp: "colicuar", en: "to melt, dissolve" },
+  { sp: "evacuar", en: "to evacuate" },
+  { sp: "licuar", en: "to blend, liquify" },
+  { sp: "oblicuar", en: "to slant, tilt, deviate" },
+  { sp: "promiscuar", en: "to do two things simultaneously" },
+];
