@@ -42,13 +42,9 @@ function fixIarAccentuation(verb: Conjugation): Conjugation {
   verb.simpleConjugation.presentIndicative = {
     yo: yo.slice(0, -2).concat("ío"),
     tu: tu.slice(0, -3).concat("ías"),
-    el: singular,
-    ella: singular,
     usted: singular,
     nosotros,
     vosotros: vosotros.slice(0, -3).concat("áis"),
-    ellos: plural,
-    ellas: plural,
     ustedes: plural,
   };
 
@@ -62,20 +58,12 @@ function fixUarAccentuation(verb: Conjugation): Conjugation {
 
   verb.simpleConjugation.presentIndicative.yo = `${verb.root}úo`;
   verb.simpleConjugation.presentIndicative.tu = `${verb.root}úas`;
-  verb.simpleConjugation.presentIndicative.el = `${verb.root}úa`;
-  verb.simpleConjugation.presentIndicative.ella = `${verb.root}úa`;
   verb.simpleConjugation.presentIndicative.usted = `${verb.root}úa`;
-  verb.simpleConjugation.presentIndicative.ellos = `${verb.root}úan`;
-  verb.simpleConjugation.presentIndicative.ellas = `${verb.root}úan`;
   verb.simpleConjugation.presentIndicative.ustedes = `${verb.root}úan`;
 
   verb.simpleConjugation.presentSubjunctive.yo = `${verb.root}úe`;
   verb.simpleConjugation.presentSubjunctive.tu = `${verb.root}úes`;
-  verb.simpleConjugation.presentSubjunctive.el = `${verb.root}úe`;
-  verb.simpleConjugation.presentSubjunctive.ella = `${verb.root}úe`;
   verb.simpleConjugation.presentSubjunctive.usted = `${verb.root}úe`;
-  verb.simpleConjugation.presentSubjunctive.ellos = `${verb.root}úen`;
-  verb.simpleConjugation.presentSubjunctive.ellas = `${verb.root}úen`;
   verb.simpleConjugation.presentSubjunctive.ustedes = `${verb.root}úen`;
 
   verb.imperative.tu = `${verb.root}úa`;
@@ -103,13 +91,9 @@ function fixGuarAccentuation(verb: Conjugation): Conjugation {
   verb.simpleConjugation.presentSubjunctive = {
     yo: singular,
     tu: `${verb.root}gües`,
-    el: singular,
-    ella: singular,
     usted: singular,
     nosotros: `${verb.root}güemos`,
     vosotros: `${verb.root}güéis`,
-    ellos: plural,
-    ellas: plural,
     ustedes: plural,
   };
 
@@ -134,37 +118,22 @@ function fixUirAccentuation(verb: Conjugation): Conjugation {
   verb.simpleConjugation.presentIndicative = {
     yo: `${verb.root}uyo`,
     tu: `${verb.root}uyes`,
-    el: singular,
-    ella: singular,
     usted: singular,
     nosotros: verb.simpleConjugation.presentIndicative.nosotros,
     vosotros: verb.simpleConjugation.presentIndicative.vosotros,
-    ellos: plural,
-    ellas: plural,
     ustedes: plural,
   };
 
   singular = `${verb.root}uyó`;
   plural = `${verb.root}uyeron`;
-  verb.simpleConjugation.preteriteIndicative.el = singular;
-  verb.simpleConjugation.preteriteIndicative.ella = singular;
   verb.simpleConjugation.preteriteIndicative.usted = singular;
-  verb.simpleConjugation.preteriteIndicative.ellos = plural;
-  verb.simpleConjugation.preteriteIndicative.ellas = plural;
-  verb.simpleConjugation.preteriteIndicative.ustedes = plural;
 
-  singular = `${verb.root}uya`;
-  plural = `${verb.root}uyan`;
   verb.simpleConjugation.presentSubjunctive = {
     yo: `${verb.root}uya`,
     tu: `${verb.root}uyas`,
-    el: singular,
-    ella: singular,
     usted: singular,
     nosotros: `${verb.root}uyamos`,
     vosotros: `${verb.root}uyáis`,
-    ellos: plural,
-    ellas: plural,
     ustedes: plural,
   };
 
@@ -173,13 +142,9 @@ function fixUirAccentuation(verb: Conjugation): Conjugation {
   verb.simpleConjugation.imperfectSubjunctive = {
     yo: singular,
     tu: `${singular}s`,
-    el: singular,
-    ella: singular,
     usted: singular,
     nosotros: `${verb.root}uyéramos`,
     vosotros: `${verb.root}uyerais`,
-    ellos: plural,
-    ellas: plural,
     ustedes: plural,
   };
 
@@ -223,10 +188,12 @@ function fixGerGir(verb: Conjugation): Conjugation {
   return verb;
 }
 
-const specialCaseConjugations = {
-  cer: (verb: Conjugation): Conjugation => fixCirCer(verb),
-  cir: (verb: Conjugation): Conjugation => fixCirCer(verb),
-  iar: (verb: Conjugation): Conjugation => {
+type SpecialCaseHandler = (verb: Conjugation) => Conjugation;
+
+const specialCaseConjugations: { [key: string]: SpecialCaseHandler } = {
+  cer: (verb) => fixCirCer(verb),
+  cir: (verb) => fixCirCer(verb),
+  iar: (verb) => {
     // move "i" from root to ending
     verb.ending = "iar";
     verb.root = verb.root.slice(0, -1);
@@ -239,7 +206,7 @@ const specialCaseConjugations = {
 
     return verb;
   },
-  uar: (verb: Conjugation): Conjugation => {
+  uar: (verb) => {
     const fullEnding = verb.infinitive.slice(-4);
     if (fullEnding.startsWith("c")) {
       return fixCuarAccentuation(verb);
@@ -249,7 +216,7 @@ const specialCaseConjugations = {
     }
     return fixUarAccentuation(verb);
   },
-  uir: (verb: Conjugation): Conjugation => {
+  uir: (verb) => {
     const fullEnding = verb.infinitive.slice(-4);
     if (fullEnding.startsWith("q")) {
       return fixQuirAccentuation(verb);
@@ -259,35 +226,24 @@ const specialCaseConjugations = {
     }
     return fixUirAccentuation(verb);
   },
-  ger: (verb: Conjugation): Conjugation => {
+  ger: (verb) => {
     // move "g" from root to ending
     verb.ending = "ger";
     verb.root = verb.root.slice(0, -1);
     return fixGerGir(verb);
   },
-  gir: (verb: Conjugation): Conjugation => {
+  gir: (verb) => {
     // move "g" from root to ending
     verb.ending = "gir";
     verb.root = verb.root.slice(0, -1);
     return fixGerGir(verb);
   },
 };
-type SpecialCaseEndings = keyof typeof specialCaseConjugations;
-const IS_SPECIAL_CASE = new RegExp(
-  `${Object.keys(specialCaseConjugations).join("|")}$`
-);
-export function isSpecialCase(verb: string) {
-  return IS_SPECIAL_CASE.test(verb);
-}
 
-export function handleSpecialCase(
-  verb: Conjugation,
-  checkValidity = true
-): Conjugation {
-  if (checkValidity && !isSpecialCase(verb.infinitive)) {
-    throw new Error("infinitive is not a special case");
-  }
-
-  const ending = verb.infinitive.slice(-3) as SpecialCaseEndings;
-  return specialCaseConjugations[ending](verb);
+export function handleSpecialCases(verb: Conjugation): Conjugation {
+  const ending = verb.infinitive.slice(-3);
+  const handler: SpecialCaseHandler | undefined =
+    specialCaseConjugations[ending];
+    
+  return handler ? handler(verb) : verb;
 }

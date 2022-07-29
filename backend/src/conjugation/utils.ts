@@ -1,4 +1,8 @@
-import type { VerbComponents } from "./types";
+import type {
+  ConjugatedTense,
+  ConjugatedTensePronoun,
+  VerbComponents,
+} from "./types";
 
 export function buildPastParticiple({ root, verbEnding }: VerbComponents) {
   if (verbEnding.startsWith("a")) {
@@ -15,4 +19,24 @@ export function buildGerund({ root, verbEnding, reflexive }: VerbComponents) {
     suffix = reflexive ? "iéndose" : "iendo";
   }
   return root + suffix;
+}
+
+const pronomialPrefixes = {
+  yo: "me",
+  tu: "te",
+  usted: "se",
+  nosotros: "nos",
+  vosotros: "vos",
+  ustedes: "se",
+};
+
+export function addPronoun(set: ConjugatedTense, reflexive: boolean) {
+  const withPronoun = {} as ConjugatedTense;
+  for (const [pronoun, verb] of Object.entries(set)) {
+    const firstWord = !reflexive
+      ? pronoun
+      : pronomialPrefixes[pronoun as ConjugatedTensePronoun];
+    withPronoun[pronoun as ConjugatedTensePronoun] = `${firstWord} ${verb}`;
+  }
+  return withPronoun;
 }

@@ -1,9 +1,9 @@
 import type { Conjugation } from "./types";
-import { conjugateSimple } from "./simpleTense";
-import { conjugateComplex } from "./complexTense";
-import { conjugateImperative } from "./imperative";
-import { isSpecialCase, handleSpecialCase } from "./specialCases";
 import { buildGerund, buildPastParticiple } from "./utils";
+import { conjugateSimple } from "./conjugateSimple";
+import { conjugateComplex } from "./conjugateComplex";
+import { conjugateImperative } from "./conjugateImperative";
+import { handleSpecialCases } from "./specialCases";
 
 export function conjugate(verb: string): Conjugation {
   let _verb = verb;
@@ -32,9 +32,5 @@ export function conjugate(verb: string): Conjugation {
     imperative,
   };
 
-  if (isSpecialCase(verb)) {
-    return handleSpecialCase(conjugation, false);
-  }
-
-  return conjugation;
+  return handleSpecialCases(conjugation);
 }

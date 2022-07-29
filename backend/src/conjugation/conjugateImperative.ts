@@ -1,5 +1,8 @@
-import type { VerbComponents } from "./types";
-import { verbSuffixes } from "./simpleTense";
+import {
+  verbSuffixes,
+  ImperativeConjugation,
+  VerbComponents,
+} from "./types";
 
 const imperativeSuffixes = {
   ar: [""],
@@ -16,16 +19,6 @@ const imperativeSuffixes = {
     (imperativeSuffixes as any)[ending] = suffixes;
   }
 })();
-
-export interface ImperativeConjugation {
-  tu: string;
-  noTu: string;
-  usted: string;
-  nosotros: string;
-  vosotros: string;
-  noVosotros: string;
-  ustedes: string;
-}
 
 export function conjugateImperative({
   root,
