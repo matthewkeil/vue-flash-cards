@@ -2992,10 +2992,11 @@ const temp = [
   },
 ];
 
-const c: Verb[] = [
+
+const c: SpanishToEnglishTranslation[] = [
   {
-    spanish: "cercar",
-    english: ["to enclose", "fence in"],
+    sp: "cercar",
+    en: ["to enclose", "fence in"],
     related: ["acercar", "acercarse"],
     phrases: [
       {
@@ -3010,10 +3011,10 @@ const c: Verb[] = [
   },
 ];
 
-const r: Verb[] = [
+const r: SpanishToEnglishTranslation[] = [
   {
-    spanish: "reclamar",
-    english: ["to claim", "to reclaim"],
+    sp: "reclamar",
+    en: ["to claim", "to reclaim"],
     phrases: [
       {
         sp: "la reclamación",
