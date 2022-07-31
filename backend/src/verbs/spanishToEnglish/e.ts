@@ -7,7 +7,7 @@ export const e: SpanishToEnglishTranslation[] = [
   },
   {
     sp: "eclosionar",
-    en: ["hatch, open"],
+    en: ["hatch", "open"],
   },
   {
     sp: "edificar",
