@@ -1,17 +1,13 @@
-import type {
-  ConjugatedTense,
-  ConjugatedTensePronoun,
-  VerbComponents,
-} from "./types";
+import type { SpanishConjugatedTense, SpanishVerbComponents } from "./types";
 
-export function buildPastParticiple({ root, verbEnding }: VerbComponents) {
+export function buildPastParticiple({ root, verbEnding }: SpanishVerbComponents) {
   if (verbEnding.startsWith("a")) {
     return root + "ado";
   }
   return root + "ido";
 }
 
-export function buildGerund({ root, verbEnding, reflexive }: VerbComponents) {
+export function buildGerund({ root, verbEnding, reflexive }: SpanishVerbComponents) {
   let suffix;
   if (verbEnding.startsWith("a")) {
     suffix = reflexive ? "ándose" : "ando";
@@ -30,13 +26,13 @@ const pronomialPrefixes = {
   ustedes: "se",
 };
 
-export function addPronoun(set: ConjugatedTense, reflexive: boolean) {
-  const withPronoun = {} as ConjugatedTense;
+export function addPronoun(set: SpanishConjugatedTense, reflexive: boolean) {
+  const withPronoun = {} as SpanishConjugatedTense;
   for (const [pronoun, verb] of Object.entries(set)) {
     const firstWord = !reflexive
       ? pronoun
-      : pronomialPrefixes[pronoun as ConjugatedTensePronoun];
-    withPronoun[pronoun as ConjugatedTensePronoun] = `${firstWord} ${verb}`;
+      : pronomialPrefixes[pronoun as keyof SpanishConjugatedTense];
+    withPronoun[pronoun as keyof SpanishConjugatedTense] = `${firstWord} ${verb}`;
   }
   return withPronoun;
 }

@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import http from "http";
 import express from "express";
 import {
@@ -7,11 +8,11 @@ import {
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 
-import { resolvers } from "../models";
+import { SpanishVerbResolver } from "./resolvers";
 
-async function startApolloServer() {
+(async function startServer() {
   const schema = await buildSchema({
-    resolvers,
+    resolvers: [SpanishVerbResolver],
   });
 
   const app = express();
@@ -31,4 +32,4 @@ async function startApolloServer() {
     httpServer.listen({ port: 4000 }, resolve)
   );
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
-}
+})();

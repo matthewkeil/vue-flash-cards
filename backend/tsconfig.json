@@ -1,8 +1,10 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["./src"],
-  "exclude": ["./dist/**/*"],
+  "include": ["src", "src/models/SpanishVerb/spanishConjugation", "src/models/SpanishVerb/index.ts", "src/models/SpanishVerb/types.ts", "src/models"],
+  "exclude": ["dist", "node_modules"],
   "compilerOptions": {
+    "noEmit": false,
+    "skipLibCheck": true,
     "outDir": "dist",
     "rootDir": "."
   }

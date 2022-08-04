@@ -1,4 +1,4 @@
-import { ConjugatedTense, SimpleConjugation, verbSuffixes, VerbComponents } from "./types";
+import { SpanishConjugatedTense as SpanishTenseConjugation, SpanishSimpleConjugation, verbSuffixes, SpanishVerbComponents } from "./types";
 import { addPronoun } from "./utils";
 
 
@@ -9,7 +9,7 @@ function buildSimpleTense(root: string, suffixes: string[]) {
     nosotros: root + suffixes[3],
     vosotros: root + suffixes[4],
     ustedes: root + suffixes[5],
-  } as ConjugatedTense;
+  } as SpanishTenseConjugation;
   if (suffixes[0]) {
     conjugated.yo = root + suffixes[0];
   }
@@ -20,7 +20,7 @@ export function conjugateSimple({
   root,
   verbEnding,
   reflexive,
-}: VerbComponents) {
+}: SpanishVerbComponents) {
   const conjugation: any = {};
   for (const [tense, suffixes] of Object.entries(verbSuffixes[verbEnding])) {
     conjugation[tense] = addPronoun(
@@ -28,5 +28,5 @@ export function conjugateSimple({
       reflexive
     );
   }
-  return conjugation as SimpleConjugation;
+  return conjugation as SpanishSimpleConjugation;
 }

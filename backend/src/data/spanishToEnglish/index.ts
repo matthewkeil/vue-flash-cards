@@ -50,7 +50,7 @@ export {
   z,
 };
 
-export const allVerbs = {
+export const allVerbs = [
   ...a,
   ...b,
   ...c,
@@ -75,4 +75,4 @@ export const allVerbs = {
   ...x,
   ...y,
   ...z,
-};
+];

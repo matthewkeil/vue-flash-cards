@@ -1,4 +1,4 @@
-import { SpanishToEnglishTranslation } from "./types";
+import { SpanishToEnglishTranslation } from "../../models/SpanishVerb/types";
 
 export const h: SpanishToEnglishTranslation[] = [
   {
@@ -63,7 +63,7 @@ export const h: SpanishToEnglishTranslation[] = [
   },
   {
     sp: "hervir",
-    en: ["boil"],
+    en: ["boil", "seethe", "boil up", "poach"],
   },
   {
     sp: "hinchar",
@@ -72,6 +72,10 @@ export const h: SpanishToEnglishTranslation[] = [
   {
     sp: "hipnotizar",
     en: ["hypnotize"],
+  },
+  {
+    sp: "hornear",
+    en: ["bake"],
   },
   {
     sp: "hospedar",

@@ -1,7 +1,7 @@
 import {
   verbSuffixes,
-  ImperativeConjugation,
-  VerbComponents,
+  SpanishImperativeConjugation,
+  SpanishVerbComponents,
 } from "./types";
 
 const imperativeSuffixes = {
@@ -24,7 +24,7 @@ export function conjugateImperative({
   root,
   verbEnding,
   reflexive,
-}: VerbComponents): ImperativeConjugation {
+}: SpanishVerbComponents): SpanishImperativeConjugation {
   const suffixes =
     imperativeSuffixes[verbEnding as keyof typeof imperativeSuffixes];
   if (reflexive) {

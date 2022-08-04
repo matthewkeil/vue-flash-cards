@@ -1,4 +1,4 @@
-import { SpanishToEnglishTranslation } from "./types";
+import { SpanishToEnglishTranslation } from "../../models/SpanishVerb/types";
 
 export const m: SpanishToEnglishTranslation[] = [
   {
@@ -127,7 +127,7 @@ export const m: SpanishToEnglishTranslation[] = [
   },
   {
     sp: "mezclar",
-    en: ["mix"],
+    en: ["mix", "blend", "toss"],
   },
   {
     sp: "mimar",

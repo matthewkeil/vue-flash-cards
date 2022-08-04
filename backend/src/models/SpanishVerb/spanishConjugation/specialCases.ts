@@ -1,6 +1,6 @@
-import { Conjugation } from "./types";
+import { SpanishConjugation } from "./types";
 
-function fixCirCer(verb: Conjugation): Conjugation {
+function fixCirCer(verb: SpanishConjugation): SpanishConjugation {
   const { yo } = verb.simpleConjugation.presentIndicative;
   verb.simpleConjugation.presentIndicative.yo = yo.slice(0, -2).concat("zco");
 
@@ -34,7 +34,7 @@ const irregularIarAccentuationList = [
   "variar",
 ];
 
-function fixIarAccentuation(verb: Conjugation): Conjugation {
+function fixIarAccentuation(verb: SpanishConjugation): SpanishConjugation {
   const { presentIndicative } = verb.simpleConjugation;
   const { yo, tu, usted, nosotros, vosotros } = presentIndicative;
   const singular = usted.slice(0, -2).concat("ía");
@@ -51,7 +51,7 @@ function fixIarAccentuation(verb: Conjugation): Conjugation {
   return verb;
 }
 
-function fixUarAccentuation(verb: Conjugation): Conjugation {
+function fixUarAccentuation(verb: SpanishConjugation): SpanishConjugation {
   // move "u" from root to ending
   verb.ending = "uar";
   verb.root = verb.root.slice(0, -1);
@@ -73,13 +73,13 @@ function fixUarAccentuation(verb: Conjugation): Conjugation {
 
   return verb;
 }
-function fixCuarAccentuation(verb: Conjugation): Conjugation {
+function fixCuarAccentuation(verb: SpanishConjugation): SpanishConjugation {
   // move "cu" from root to ending
   verb.ending = "cuar";
   verb.root = verb.root.slice(0, -2);
   return verb;
 }
-function fixGuarAccentuation(verb: Conjugation): Conjugation {
+function fixGuarAccentuation(verb: SpanishConjugation): SpanishConjugation {
   // move "gu" from root to ending
   verb.ending = "guar";
   verb.root = verb.root.slice(0, -2);
@@ -106,7 +106,7 @@ function fixGuarAccentuation(verb: Conjugation): Conjugation {
   return verb;
 }
 
-function fixUirAccentuation(verb: Conjugation): Conjugation {
+function fixUirAccentuation(verb: SpanishConjugation): SpanishConjugation {
   // move "u" from root to ending
   verb.ending = "uir";
   verb.root = verb.root.slice(0, -1);
@@ -160,7 +160,7 @@ function fixUirAccentuation(verb: Conjugation): Conjugation {
 
   return verb;
 }
-function fixQuirAccentuation(verb: Conjugation): Conjugation {
+function fixQuirAccentuation(verb: SpanishConjugation): SpanishConjugation {
   // http://harrisacademy.ea.dundeecity.sch.uk/departments/modern-languages/department-documents/s4-revision/grammar-notes/present-tense
 
   // move "qu" from root to ending
@@ -170,7 +170,7 @@ function fixQuirAccentuation(verb: Conjugation): Conjugation {
   verb.simpleConjugation.presentIndicative.yo = `${verb.root}co`;
   return verb;
 }
-function fixGuirAccentuation(verb: Conjugation): Conjugation {
+function fixGuirAccentuation(verb: SpanishConjugation): SpanishConjugation {
   // http://harrisacademy.ea.dundeecity.sch.uk/departments/modern-languages/department-documents/s4-revision/grammar-notes/present-tense
 
   // move "gu" from root to ending
@@ -182,13 +182,13 @@ function fixGuirAccentuation(verb: Conjugation): Conjugation {
   return verb;
 }
 
-function fixGerGir(verb: Conjugation): Conjugation {
+function fixGerGir(verb: SpanishConjugation): SpanishConjugation {
   // http://harrisacademy.ea.dundeecity.sch.uk/departments/modern-languages/department-documents/s4-revision/grammar-notes/present-tense
   verb.simpleConjugation.presentIndicative.yo = `${verb.root}jo`;
   return verb;
 }
 
-type SpecialCaseHandler = (verb: Conjugation) => Conjugation;
+type SpecialCaseHandler = (verb: SpanishConjugation) => SpanishConjugation;
 
 const specialCaseConjugations: { [key: string]: SpecialCaseHandler } = {
   cer: (verb) => fixCirCer(verb),
@@ -240,7 +240,7 @@ const specialCaseConjugations: { [key: string]: SpecialCaseHandler } = {
   },
 };
 
-export function handleSpecialCases(verb: Conjugation): Conjugation {
+export function handleSpecialCases(verb: SpanishConjugation): SpanishConjugation {
   const ending = verb.infinitive.slice(-3);
   const handler: SpecialCaseHandler | undefined =
     specialCaseConjugations[ending];

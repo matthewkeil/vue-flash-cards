@@ -1,4 +1,4 @@
-import { SpanishToEnglishTranslation } from "./types";
+import { SpanishToEnglishTranslation } from "../../models/SpanishVerb/types";
 
 export const c: SpanishToEnglishTranslation[] = [
   {
@@ -196,7 +196,7 @@ export const c: SpanishToEnglishTranslation[] = [
   },
   {
     sp: "cocer",
-    en: ["to boil"],
+    en: ["cook", "boil", "fire", "stew", "burn"],
   },
   {
     sp: "cocinar",

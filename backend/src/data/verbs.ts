@@ -1,3 +1,5 @@
+import { SpanishToEnglishTranslation } from "../models/SpanishVerb/types";
+
 const radicallyChangingVerbs = {
   abrir: {
     pastParticiple: "abierto",

@@ -1,4 +1,8 @@
-export interface VerbComponents {
+import { IsBoolean, IsString, ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
+import { Field, ObjectType } from "type-graphql";
+
+export interface SpanishVerbComponents {
   root: string;
   verbEnding: string;
   reflexive: boolean;
@@ -41,9 +45,15 @@ export function isPronoun(obj: unknown): obj is Pronoun {
   );
 }
 
-export type ConjugatedTensePronoun = SimplePronoun | "usted" | "ustedes";
-
-export type ConjugatedTense = { [key in ConjugatedTensePronoun]: string };
+interface SimpleTenses {
+  presentIndicative: string[];
+  imperfectIndicative: string[];
+  preteriteIndicative: string[];
+  futureIndicative: string[];
+  potentialSimple: string[];
+  presentSubjunctive: string[];
+  imperfectSubjunctive: string[];
+}
 
 export const verbSuffixes: { [ending: string]: SimpleTenses } = {
   ar: {
@@ -89,20 +99,6 @@ export const verbSuffixes: { [ending: string]: SimpleTenses } = {
   },
 };
 
-interface SimpleTenses {
-  presentIndicative: string[];
-  imperfectIndicative: string[];
-  preteriteIndicative: string[];
-  futureIndicative: string[];
-  potentialSimple: string[];
-  presentSubjunctive: string[];
-  imperfectSubjunctive: string[];
-}
-
-export type SimpleConjugation = {
-  [key in keyof SimpleTenses]: ConjugatedTense;
-};
-
 export const haberConjugation = {
   perfectIndicative: ["he", "has", "ha", "hemos", "habéis", "han"],
   pluperfectIndicative: [
@@ -141,28 +137,177 @@ export const haberConjugation = {
   ],
 };
 
-export type ComplexConjugation = {
-  [key in keyof typeof haberConjugation]: ConjugatedTense;
-};
+@ObjectType()
+export class SpanishConjugatedTense {
+  @Field()
+  @IsString()
+  yo!: string;
 
-export interface ImperativeConjugation {
-  tu: string;
-  noTu: string;
-  usted: string;
-  nosotros: string;
-  vosotros: string;
-  noVosotros: string;
-  ustedes: string;
+  @Field()
+  @IsString()
+  tu!: string;
+
+  @Field()
+  @IsString()
+  usted!: string;
+
+  @Field()
+  @IsString()
+  nosotros!: string;
+
+  @Field()
+  @IsString()
+  vosotros!: string;
+
+  @Field()
+  @IsString()
+  ustedes!: string;
 }
 
-export interface Conjugation {
-  infinitive: string;
-  root: string;
-  ending: string;
-  reflexive: boolean;
-  gerund: string;
-  pastParticiple: string;
-  simpleConjugation: SimpleConjugation;
-  complexConjugation: ComplexConjugation;
-  imperative: ImperativeConjugation;
+@ObjectType()
+export class SpanishSimpleConjugation {
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  presentIndicative!: SpanishConjugatedTense;
+
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  imperfectIndicative!: SpanishConjugatedTense;
+
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  preteriteIndicative!: SpanishConjugatedTense;
+
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  futureIndicative!: SpanishConjugatedTense;
+
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  potentialSimple!: SpanishConjugatedTense;
+
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  presentSubjunctive!: SpanishConjugatedTense;
+
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  imperfectSubjunctive!: SpanishConjugatedTense;
+}
+
+@ObjectType()
+export class SpanishComplexConjugation {
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  perfectIndicative!: SpanishConjugatedTense;
+
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  pluperfectIndicative!: SpanishConjugatedTense;
+
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  preteriteAnterior!: SpanishConjugatedTense;
+
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  futurePerfect!: SpanishConjugatedTense;
+
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  potentialContinuous!: SpanishConjugatedTense;
+
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  perfectSubjunctive!: SpanishConjugatedTense;
+
+  @Field()
+  @Type(() => SpanishConjugatedTense)
+  @ValidateNested()
+  pluperfectSubjunctive!: SpanishConjugatedTense;
+}
+
+@ObjectType()
+export class SpanishImperativeConjugation {
+  @Field()
+  @IsString()
+  tu!: string;
+
+  @Field()
+  @IsString()
+  noTu!: string;
+
+  @Field()
+  @IsString()
+  usted!: string;
+
+  @Field()
+  @IsString()
+  nosotros!: string;
+
+  @Field()
+  @IsString()
+  vosotros!: string;
+
+  @Field()
+  @IsString()
+  noVosotros!: string;
+
+  @Field()
+  @IsString()
+  ustedes!: string;
+}
+
+@ObjectType()
+export class SpanishConjugation {
+  @Field()
+  @IsString()
+  infinitive!: string;
+
+  @Field()
+  @IsString()
+  root!: string;
+
+  @Field()
+  @IsString()
+  ending!: string;
+
+  @IsBoolean()
+  reflexive!: boolean;
+
+  @Field()
+  @IsString()
+  gerund!: string;
+
+  @Field()
+  @IsString()
+  pastParticiple!: string;
+  
+  @Field()
+  @Type(() => SpanishSimpleConjugation)
+  @ValidateNested()
+  simpleConjugation!: SpanishSimpleConjugation;
+  
+  @Field()
+  @Type(() => SpanishComplexConjugation)
+  @ValidateNested()
+  complexConjugation!: SpanishComplexConjugation;
+  
+  @Field()
+  @Type(() => SpanishImperativeConjugation)
+  @ValidateNested()
+  imperative!: SpanishImperativeConjugation;
 }

@@ -1,4 +1,4 @@
-import { SpanishToEnglishTranslation } from "./types";
+import { SpanishToEnglishTranslation } from "../../models/SpanishVerb/types";
 
 export const b: SpanishToEnglishTranslation[] = [
   {
@@ -111,7 +111,7 @@ export const b: SpanishToEnglishTranslation[] = [
   },
   {
     sp: "bullir",
-    en: ["to boil"],
+    en: ["boil", "seethe", "move"],
   },
   {
     sp: "burlar",

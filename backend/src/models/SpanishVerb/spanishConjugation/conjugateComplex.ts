@@ -1,4 +1,4 @@
-import { ComplexConjugation, ConjugatedTense, haberConjugation } from "./types";
+import { SpanishComplexConjugation, SpanishConjugatedTense, haberConjugation } from "./types";
 import { addPronoun } from "./utils";
 
 
@@ -10,7 +10,7 @@ function buildComplexTense(pastParticiple: string, prefixes: string[]) {
     nosotros: `${prefixes[3]} ${pastParticiple}`,
     vosotros: `${prefixes[4]} ${pastParticiple}`,
     ustedes: `${prefixes[5]} ${pastParticiple}`,
-  } as ConjugatedTense;
+  } as SpanishConjugatedTense;
 }
 
 export function conjugateComplex(pastParticiple: string, reflexive: boolean) {
@@ -21,5 +21,5 @@ export function conjugateComplex(pastParticiple: string, reflexive: boolean) {
       reflexive
     );
   }
-  return conjugation as ComplexConjugation;
+  return conjugation as SpanishComplexConjugation;
 }
