@@ -2,7 +2,7 @@ import { InjectionKey } from "vue";
 import {
   createStore,
   Store as BaseStore,
-  useStore as USE_STORE,
+  useStore as baseUseStore,
   ActionContext as BaseActionContext,
   CommitOptions,
   DispatchOptions,
@@ -10,9 +10,7 @@ import {
 
 /**
  *
- *
  * State
- *
  *
  */
 const state = {
@@ -61,17 +59,9 @@ const state = {
   activeCardIndex: 0,
   nextCardIndex: 1,
 };
-export interface Card {
-  frontText: string;
-  backText: string;
-}
-type State = typeof state;
-
 /**
  *
- *
  * Mutations
- *
  *
  */
 const mutations = {
@@ -85,22 +75,9 @@ const mutations = {
     state.cards = cards;
   },
 };
-
-type Mutation = keyof typeof mutations;
-type MutationPayload<K extends Mutation = Mutation> = Parameters<
-  typeof mutations[K]
->[1];
-type Commit = <K extends Mutation = Mutation>(
-  key: K,
-  payload?: MutationPayload,
-  options?: CommitOptions
-) => ReturnType<typeof mutations[K]>;
-
 /**
  *
- *
  * Actions
- *
  *
  */
 const actions = {
@@ -108,25 +85,9 @@ const actions = {
     commit("UPDATE_CARDS", []);
   },
 };
-
-type ActionContext = {
-  commit(key: Mutation, payload: MutationPayload): void;
-} & Omit<BaseActionContext<State, State>, "commit">;
-type Action = keyof typeof actions;
-type ActionPayload<K extends Action = Action> = Parameters<
-  typeof actions[K]
->[1];
-type Dispatch = <K extends Action = Action>(
-  key: K,
-  payload?: ActionPayload,
-  options?: DispatchOptions
-) => ReturnType<typeof actions[K]>;
-
 /**
  *
- *
  * Getters
- *
  *
  */
 const getters = {
@@ -142,15 +103,74 @@ const getters = {
     return remaining;
   },
 };
-type Getters = {
-  [L in keyof typeof getters]: ReturnType<typeof getters[L]>;
-};
-
 /**
- *
  *
  * Store
  *
+ */
+export const key: InjectionKey<Store> = Symbol();
+export const store = createStore({
+  state,
+  mutations,
+  getters,
+  actions,
+});
+export function useStore(): Store {
+  return baseUseStore(key);
+}
+
+/**
+ *
+ * State
+ *
+ */
+export interface Card {
+  frontText: string;
+  backText: string;
+}
+type State = typeof state;
+/**
+ *
+ * Mutations
+ *
+ */
+type Mutation = keyof typeof mutations;
+type MutationPayload<K extends Mutation = Mutation> = Parameters<
+  typeof mutations[K]
+>[1];
+type Commit = <K extends Mutation = Mutation>(
+  key: K,
+  payload?: MutationPayload,
+  options?: CommitOptions
+) => ReturnType<typeof mutations[K]>;
+/**
+ *
+ * Actions
+ *
+ */
+type ActionContext = {
+  commit(key: Mutation, payload: MutationPayload): void;
+} & Omit<BaseActionContext<State, State>, "commit">;
+type Action = keyof typeof actions;
+type ActionPayload<K extends Action = Action> = Parameters<
+  typeof actions[K]
+>[1];
+type Dispatch = <K extends Action = Action>(
+  key: K,
+  payload?: ActionPayload,
+  options?: DispatchOptions
+) => ReturnType<typeof actions[K]>;
+/**
+ *
+ * Getters
+ *
+ */
+type Getters = {
+  [L in keyof typeof getters]: ReturnType<typeof getters[L]>;
+};
+/**
+ *
+ * Store
  *
  */
 export type Store = Omit<
@@ -161,13 +181,3 @@ export type Store = Omit<
   dispatch: Dispatch;
   getters: Getters;
 };
-export const key: InjectionKey<Store> = Symbol();
-export const store = createStore({
-  state,
-  mutations,
-  getters,
-  actions,
-});
-export function useStore(): Store {
-  return USE_STORE(key);
-}

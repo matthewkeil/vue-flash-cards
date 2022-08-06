@@ -1,1 +1,3 @@
-export { SpanishVerb } from "./SpanishVerb";
+export * from "./SpanishVerb";
+export * from "./SpanishVerbResolver";
+export * from "./TranslationPair";

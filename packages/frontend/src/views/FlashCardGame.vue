@@ -23,12 +23,13 @@
 </template>
 
 <script lang="ts">
+import { useQuery } from "@vue/apollo-composable";
 import { computed, defineComponent, ref } from "vue";
 import { useStore } from "../store";
 import FlashCards from "../components/FlashCards.vue";
 
 export default defineComponent({
-  name: "Home",
+  name: "FlashCardGame",
   components: {
     FlashCards,
   },

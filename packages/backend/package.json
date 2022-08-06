@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "ts-node-dev --respawn --watch ./src ./src/graphql/server",
+    "start": "ts-node-dev --respawn --watch ./src ./src/server",
     "ts": "node -r ts-node/register",
     "build": "rm -rf dist && tsc"
   },

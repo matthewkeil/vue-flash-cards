@@ -3,8 +3,7 @@ import { ApolloServer } from "apollo-server-lambda";
 import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { buildSchemaSync } from "type-graphql";
 
-import { SpanishVerbResolver } from "../models/SpanishVerb/SpanishVerbResolver";
-import { CardDeckResolver } from "../models/CardDeck/CardDeckResolver";
+import { CardDeckResolver, SpanishVerbResolver } from "./models";
 
 const schema = buildSchemaSync({
   resolvers: [SpanishVerbResolver, CardDeckResolver],

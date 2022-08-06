@@ -1,0 +1,6 @@
+query listDecks {
+  listDecks {
+    id
+    name
+  }
+}

@@ -9,15 +9,14 @@ import {
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 
-import { SpanishVerbResolver } from "../models/SpanishVerb/SpanishVerbResolver";
-import { CardDeckResolver } from "../models/CardDeck/CardDeckResolver";
+import { SpanishVerbResolver } from "./models/SpanishVerb/SpanishVerbResolver";
+import { CardDeckResolver } from "./models/CardDeck/CardDeckResolver";
 
 (async function startServer() {
   const schema = await buildSchema({
     resolvers: [SpanishVerbResolver, CardDeckResolver],
     emitSchemaFile: resolve(
       __dirname,
-      "..",
       "..",
       "dist",
       "src",
