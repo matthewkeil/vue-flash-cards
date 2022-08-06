@@ -2,16 +2,17 @@
   "name": "spanish-english-flash-cards",
   "version": "0.0.1",
   "description": "",
+  "workspaces": [
+    "packages/frontend",
+    "packages/backend"
+  ],
   "scripts": {
     "ts": "node -r ts-node/register"
   },
   "keywords": [],
   "author": "Matthew Keil",
   "license": "MIT",
-  "devDependencies": {
-    "@types/jest": "^28.1.6",
-    "@vue/cli": "^4.5.13",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.5"
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
