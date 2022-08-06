@@ -1,0 +1,14 @@
+query listDecks {
+    listDecks {
+        name
+        cards {
+            en
+            sp
+            related
+            usage {
+                en
+                sp
+            }
+        }
+    }
+}

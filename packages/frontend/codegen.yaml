@@ -1,0 +1,13 @@
+schema: ../backend/dist/src/graphql/schema.graphql
+documents: ../backend/src/models/**/*.graphql
+generates:
+  ./dist/src/graphql/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-vue-apollo-smart-ops
+      # - typescript-react-apollo
+      # - typescript-react-query
+      # - typed-document-node
+    # config:
+      # withHooks: true

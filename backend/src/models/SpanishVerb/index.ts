@@ -1,1 +1,0 @@
-export { SpanishVerb } from "./SpanishVerb";
