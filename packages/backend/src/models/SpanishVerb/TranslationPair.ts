@@ -8,5 +8,10 @@ export class TranslationPair {
 
   @Field(() => [String])
   @IsString({ each: true })
-  en!: string[];
+  en!: string | string[];
+
+  constructor({ sp, en }: TranslationPair) {
+    this.sp = sp;
+    this.en = en;
+  }
 }

@@ -20,11 +20,17 @@ export type CardDeck = {
   name: Scalars['String'];
 };
 
+export type CardDeckMeta = {
+  __typename?: 'CardDeckMeta';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   getDeck: CardDeck;
   getVerb: SpanishVerb;
-  listDecks: Array<CardDeck>;
+  listDecks: Array<CardDeckMeta>;
   searchEnglish: Array<TranslationPair>;
   searchSpanish: Array<TranslationPair>;
 };
@@ -73,7 +79,7 @@ export type GetDeckQuery = { __typename?: 'Query', getDeck: { __typename?: 'Card
 export type ListDecksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ListDecksQuery = { __typename?: 'Query', listDecks: Array<{ __typename?: 'CardDeck', id: string, name: string }> };
+export type ListDecksQuery = { __typename?: 'Query', listDecks: Array<{ __typename?: 'CardDeckMeta', id: string, name: string }> };
 
 
 export const GetDeckDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getDeck"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getDeck"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"deckId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"cards"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"en"}},{"kind":"Field","name":{"kind":"Name","value":"sp"}},{"kind":"Field","name":{"kind":"Name","value":"related"}},{"kind":"Field","name":{"kind":"Name","value":"usage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"en"}},{"kind":"Field","name":{"kind":"Name","value":"sp"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetDeckQuery, GetDeckQueryVariables>;

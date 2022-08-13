@@ -1,19 +1,12 @@
 import { Type } from "class-transformer";
-import { IsString, IsUUID, ValidateNested } from "class-validator";
-import { ID, Field, ObjectType } from "type-graphql";
+import { ValidateNested } from "class-validator";
+import { Field, ObjectType } from "type-graphql";
 
 import { SpanishVerb } from "../SpanishVerb/SpanishVerb";
+import { CardDeckMeta } from "./CardDeckMeta";
 
 @ObjectType()
-export class CardDeck {
-  @Field(() => ID)
-  @IsUUID()
-  id!: string;
-
-  @Field()
-  @IsString()
-  name!: string;
-
+export class CardDeck extends CardDeckMeta {
   @Field(() => [SpanishVerb])
   @Type(() => SpanishVerb)
   @ValidateNested({ each: true })

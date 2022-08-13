@@ -1,4 +1,6 @@
-export const spanishCookingVerbs = [
+import { CardDeck, SpanishVerb } from "../../models";
+
+export const spanishCookingVerbs: SpanishVerb[] = [
   {
     sp: "freir",
     en: ["fry"],
@@ -16,9 +18,13 @@ export const spanishCookingVerbs = [
     en: ["burn"],
   },
   {
-    sp: "pelar, mondar",
-    en: ["peel"],
-    examples: [
+    sp: "pelar",
+    en: "peel",
+  },
+  {
+    sp: "mondar",
+    en: "peel",
+    usage: [
       {
         sp: "Pela la manzana y córtala en rodajas.",
         en: "Peel the apple and slice it in rounds.",
@@ -28,7 +34,7 @@ export const spanishCookingVerbs = [
   {
     sp: "verter, echar",
     en: ["pour"],
-    examples: [
+    usage: [
       {
         sp: "Vierte la leche lentamente a la mezcla.",
         en: "Pour the milk into the mixture slowly.",
@@ -38,7 +44,7 @@ export const spanishCookingVerbs = [
   {
     sp: "cortar en cuatro, descuartizar",
     en: ["quarter"],
-    examples: [
+    usage: [
       {
         sp: "Corta el pollo entero en cuatro antes de servir.",
         en: "Quarter the whole chicken before serving.",
@@ -48,7 +54,7 @@ export const spanishCookingVerbs = [
   {
     sp: "descremar (leche), espumar (sopa)",
     en: ["skim"],
-    examples: [
+    usage: [
       {
         sp: "Espuma la grasa del caldo.",
         en: "Skim the fat off the broth.",
@@ -58,7 +64,7 @@ export const spanishCookingVerbs = [
   {
     sp: "remojar, poner en remojo",
     en: ["soak"],
-    examples: [
+    usage: [
       {
         sp: "Remoja las habichuelas por 24 horas antes de cocinarlas.",
         en: "Soak the beans for 24 hours before cooking.",
@@ -68,7 +74,7 @@ export const spanishCookingVerbs = [
   {
     sp: "probar, degustar",
     en: ["taste"],
-    examples: [
+    usage: [
       {
         sp: "Prueba la salsa de tomate para ver si necesita más sal.",
         en: "Taste the tomato sauce to see if it needs more salt.",
@@ -78,7 +84,7 @@ export const spanishCookingVerbs = [
   {
     sp: "regar con su jugo",
     en: "baste",
-    examples: [
+    usage: [
       {
         sp: "Riega el pavo con su jugo cada minuto.",
         en: "Baste the turkey every minute.",
@@ -88,7 +94,7 @@ export const spanishCookingVerbs = [
   {
     sp: "freír",
     en: "fry",
-    examples: [
+    usage: [
       {
         sp: "Fríe las papas en aceite vegetal.",
         en: "Fry the potatoes in vegetable oil.",
@@ -98,7 +104,7 @@ export const spanishCookingVerbs = [
   {
     sp: "hacer puré",
     en: "puree",
-    examples: [
+    usage: [
       {
         sp: "Haz un puré de los vegetales en una licuadora.",
         en: "Puree the vegetables in a blender.",
@@ -108,7 +114,7 @@ export const spanishCookingVerbs = [
   {
     sp: "hervir a fuego lento",
     en: "simmer",
-    examples: [
+    usage: [
       {
         sp: "Hierve los vegetales a fuego lento por 15 minutos.",
         en: "Simmer the vegetables for 15 minutes.",
@@ -118,7 +124,7 @@ export const spanishCookingVerbs = [
   {
     sp: "echar con una cuchara",
     en: "spoon",
-    examples: [
+    usage: [
       {
         sp: "Echa la masa de galletas en la bandeja de horno.",
         en: "Spoon the dough onto the baking sheet.",
@@ -128,7 +134,7 @@ export const spanishCookingVerbs = [
   {
     sp: "añadir",
     en: ["add"],
-    examples: [
+    usage: [
       {
         sp: "Añade agua a la mezcla.",
         en: "Add water to the mixture.",
@@ -138,7 +144,7 @@ export const spanishCookingVerbs = [
   {
     sp: "hornear",
     en: ["bake"],
-    examples: [
+    usage: [
       {
         sp: "Hornea el pastel a 350 grados.",
         en: "Bake the cake at 350 degrees.",
@@ -148,7 +154,7 @@ export const spanishCookingVerbs = [
   {
     sp: "batir",
     en: ["beat", "whip"],
-    examples: [
+    usage: [
       {
         sp: "Bate las claras de huevo hasta que estén firmes.",
         en: "Beat the egg whites until stiff.",
@@ -162,7 +168,7 @@ export const spanishCookingVerbs = [
   {
     sp: "mezclar",
     en: ["blend", "mix", "toss"],
-    examples: [
+    usage: [
       {
         sp: "Mezcla los huevos y el azúcar.",
         en: "Blend the eggs and the sugar.",
@@ -180,7 +186,7 @@ export const spanishCookingVerbs = [
   {
     sp: "hervir",
     en: ["boil"],
-    examples: [
+    usage: [
       {
         sp: "Hierve el agua antes de añadir la pasta.",
         en: "Boil the water before adding the pasta.",
@@ -190,7 +196,7 @@ export const spanishCookingVerbs = [
   {
     sp: "dorar",
     en: ["brown"],
-    examples: [
+    usage: [
       {
         sp: "Dora la carne por un minuto.",
         en: "Brown the meat for one minute.",
@@ -200,7 +206,7 @@ export const spanishCookingVerbs = [
   {
     sp: "trinchar",
     en: ["carve"],
-    examples: [
+    usage: [
       {
         sp: "Trinche el pavo después de dejarlo reposar.",
         en: "Carve the turkey after letting it rest.",
@@ -210,7 +216,7 @@ export const spanishCookingVerbs = [
   {
     sp: "revisar",
     en: ["check"],
-    examples: [
+    usage: [
       {
         sp: "Revisa la temperatura del horno con un termómetro.",
         en: "Check the oven temperature with a thermometer.",
@@ -220,7 +226,7 @@ export const spanishCookingVerbs = [
   {
     sp: "picar",
     en: ["chop", "mince"],
-    examples: [
+    usage: [
       {
         sp: "Pica la carne de hamburguesa y añade sal y pimienta.",
         en: "Mince the hamburger meat and add salt and pepper.",
@@ -232,8 +238,9 @@ export const spanishCookingVerbs = [
     ],
   },
   {
-    en: ["cool"],
-    examples: [
+    sp: "enfriar",
+    en: "cool",
+    usage: [
       {
         sp: "Enfría los frijoles verdes en un baño de hielo.",
         en: "Cool the green beans in an ice bath.",
@@ -243,7 +250,7 @@ export const spanishCookingVerbs = [
   {
     sp: "cubrir",
     en: ["cover"],
-    examples: [
+    usage: [
       {
         sp: "Cubre la carne con papel de aluminio.",
         en: "Cover the meat with aluminum foil.",
@@ -253,7 +260,7 @@ export const spanishCookingVerbs = [
   {
     sp: "cortar",
     en: ["cut"],
-    examples: [
+    usage: [
       {
         sp: "Corta el pollo en trozos.",
         en: "Cut the chicken into pieces.",
@@ -263,7 +270,7 @@ export const spanishCookingVerbs = [
   {
     sp: "decorar",
     en: ["decorate"],
-    examples: [
+    usage: [
       {
         sp: "Decora el pastel con crema de mantequilla.",
         en: "Decorate the cake with buttercream.",
@@ -273,7 +280,7 @@ export const spanishCookingVerbs = [
   {
     sp: "descongelar",
     en: ["defrost"],
-    examples: [
+    usage: [
       {
         sp: "Descongela el pollo antes de cocinar.",
         en: "Defrost the chicken before cooking.",
@@ -283,7 +290,7 @@ export const spanishCookingVerbs = [
   {
     sp: "desechar",
     en: ["discard"],
-    examples: [
+    usage: [
       {
         sp: "Desecha las mondas.",
         en: "Discard the peelings.",
@@ -293,7 +300,7 @@ export const spanishCookingVerbs = [
   {
     sp: "echar",
     en: ["drop"],
-    examples: [
+    usage: [
       {
         sp: "Echa el huevo al agua hirviente.",
         en: "Drop the egg into the boiling water.",
@@ -303,7 +310,7 @@ export const spanishCookingVerbs = [
   {
     sp: "secar",
     en: ["dry"],
-    examples: [
+    usage: [
       {
         sp: "Seca el pollo entero en el refrigerador antes de hornear.",
         en: "Dry the whole chicken in the refrigerator before baking.",
@@ -313,7 +320,7 @@ export const spanishCookingVerbs = [
   {
     sp: "incorporar",
     en: ["fold", "incorporate"],
-    examples: [
+    usage: [
       {
         sp: "Incorpora la clara de huevo lentamente a la mezcla.",
         en: "Fold the egg whites slowly into the mixture.",
@@ -323,7 +330,7 @@ export const spanishCookingVerbs = [
   {
     sp: "moldear",
     en: ["form"],
-    examples: [
+    usage: [
       {
         sp: "Moldea la masa en bolitas.",
         en: "Form the dough into balls.",
@@ -333,7 +340,7 @@ export const spanishCookingVerbs = [
   {
     sp: "glasear",
     en: ["glaze"],
-    examples: [
+    usage: [
       {
         sp: "Glasea el pastel con glaseado de chocolate.",
         en: "Glaze the cake with chocolate icing.",
@@ -343,7 +350,7 @@ export const spanishCookingVerbs = [
   {
     sp: "asar",
     en: ["grill", "roast"],
-    examples: [
+    usage: [
       {
         sp: "Asa las costillas a una temperatura baja.",
         en: "Grill the ribs at a low temperature.",
@@ -357,7 +364,7 @@ export const spanishCookingVerbs = [
   {
     sp: "calentar",
     en: ["heat", "warm"],
-    examples: [
+    usage: [
       {
         sp: "Calienta la mezcla en un baño de maría.",
         en: "Heat the mixture using a bain-marie.",
@@ -367,7 +374,7 @@ export const spanishCookingVerbs = [
   {
     sp: "hacer",
     en: ["make"],
-    examples: [
+    usage: [
       {
         sp: "Haz el adobo de antemano y ponla a un lado.",
         en: "Make the marinade beforehand and set it aside.",
@@ -377,7 +384,7 @@ export const spanishCookingVerbs = [
   {
     sp: "derretir",
     en: ["melt"],
-    examples: [
+    usage: [
       {
         sp: "Derrite la mantequilla y añádela a la mezcla.",
         en: "Melt the butter and add it to mix.",
@@ -387,7 +394,7 @@ export const spanishCookingVerbs = [
   {
     sp: "humedecer",
     en: ["moisten"],
-    examples: [
+    usage: [
       {
         sp: "Humedece los bordes para asegurar que el ravioli esté sellado.",
         en: "Moisten the edges to ensure the ravioli is sealed.",
@@ -397,7 +404,7 @@ export const spanishCookingVerbs = [
   {
     sp: "abrir",
     en: ["open"],
-    examples: [
+    usage: [
       {
         sp: "Abre una lata de tomates en cubitos y añade a la salsa.",
         en: "Open a can of diced tomatoes and add to the sauce.",
@@ -408,7 +415,7 @@ export const spanishCookingVerbs = [
   {
     sp: "perforar",
     en: ["pierce"],
-    examples: [
+    usage: [
       {
         sp: "Perfora la carne con la brocheta y colócala en la parrilla.",
         en: "Pierce the meat with a skewer and place on the grill.",
@@ -418,7 +425,7 @@ export const spanishCookingVerbs = [
   {
     sp: "colocar",
     en: ["place"],
-    examples: [
+    usage: [
       {
         sp: "Coloca la carne en un plato de servir.",
         en: "Place the meat on a serving platter.",
@@ -428,7 +435,7 @@ export const spanishCookingVerbs = [
   {
     sp: "preparar",
     en: ["prepare"],
-    examples: [
+    usage: [
       {
         sp: "Prepara la tapa de maza y déjala reposar en la nevera.",
         en: "Prepare the crust and let it set in the refrigerator.",
@@ -438,7 +445,7 @@ export const spanishCookingVerbs = [
   {
     sp: "precalentar",
     en: ["preheat"],
-    examples: [
+    usage: [
       {
         sp: "Precalienta el horno a 350 grados.",
         en: "Preheat the oven to 350 degrees.",
@@ -448,7 +455,7 @@ export const spanishCookingVerbs = [
   {
     sp: "exprimir",
     en: ["squeeze"],
-    examples: [
+    usage: [
       {
         sp: "Exprime dos naranjas y añade el jugo a la masa.",
         en: "Squeeze two oranges and add the juice to the batter.",
@@ -458,7 +465,7 @@ export const spanishCookingVerbs = [
   {
     sp: "reducir",
     en: ["reduce"],
-    examples: [
+    usage: [
       {
         sp: "Reduce la salsa a fuego lento.",
         en: "Reduce the sauce at a simmer.",
@@ -468,7 +475,7 @@ export const spanishCookingVerbs = [
   {
     sp: "recalentar",
     en: ["reheat"],
-    examples: [
+    usage: [
       {
         sp: "Recalienta la pizza en el horno para una corteza más crujiente.",
         en: "Reheat the pizza in the oven for a crispier crust.",
@@ -478,7 +485,7 @@ export const spanishCookingVerbs = [
   {
     sp: "reemplazar",
     en: ["replace"],
-    examples: [
+    usage: [
       {
         sp: "Reemplaza el azúcar con puré de manzana para una versión más saludable.",
         en: "Replace the sugar with applesauce for a healthier version.",
@@ -488,7 +495,7 @@ export const spanishCookingVerbs = [
   {
     sp: "rebozar",
     en: ["roll"],
-    examples: [
+    usage: [
       {
         sp: "Reboza la masa de galletas en azúcar antes de hornear.",
         en: "Roll the cookie dough in sugar before baking.",
@@ -498,7 +505,7 @@ export const spanishCookingVerbs = [
   {
     sp: "salar",
     en: ["salt"],
-    examples: [
+    usage: [
       {
         sp: "Sala la carne antes de dorarla.",
         en: "Salt the meat before browning.",
@@ -507,9 +514,8 @@ export const spanishCookingVerbs = [
   },
   {
     sp: "saltear",
-
-    // en: ["sauté"],
-    examples: [
+    en: ["sauté"],
+    usage: [
       {
         sp: "Saltea las papas en aceite de oliva.",
         en: "Sauté the potatoes in olive oil.",
@@ -519,7 +525,7 @@ export const spanishCookingVerbs = [
   {
     sp: "sacar",
     en: ["scoop"],
-    examples: [
+    usage: [
       {
         sp: "Saca tres bolas de helado y sírvelas con sirope de chocolate.",
         en: "Scoop three balls of ice cream and serve with chocolate syrup.",
@@ -529,7 +535,7 @@ export const spanishCookingVerbs = [
   {
     sp: "raspar",
     en: ["scrape"],
-    examples: [
+    usage: [
       {
         sp: "Raspa la olla para quitar la grasa del asado.",
         en: "Scrape the pan to remove the drippings.",
@@ -539,7 +545,7 @@ export const spanishCookingVerbs = [
   {
     sp: "restregar",
     en: ["scrub"],
-    examples: [
+    usage: [
       {
         sp: "Restriega la papa para quitarle la tierra antes de pelarla.",
         en: "Scrub the potato to remove dirt before peeling.",
@@ -549,7 +555,7 @@ export const spanishCookingVerbs = [
   {
     sp: "sazonar",
     en: ["season"],
-    examples: [
+    usage: [
       {
         sp: "Sazona la salsa con sal y pimienta.",
         en: "Season the sauce with salt and pepper.",
@@ -559,7 +565,7 @@ export const spanishCookingVerbs = [
   {
     sp: "separar",
     en: ["separate"],
-    examples: [
+    usage: [
       {
         sp: "Separa la clara de huevo de la yema.",
         en: "Separate the egg white from the egg yolk.",
@@ -569,7 +575,7 @@ export const spanishCookingVerbs = [
   {
     sp: "cuajar",
     en: ["set"],
-    examples: [
+    usage: [
       {
         sp: "Deja el pudín cuajar por una hora.",
         en: "Let the pudding set for one hour.",
@@ -579,7 +585,7 @@ export const spanishCookingVerbs = [
   {
     sp: "desmenuzar",
     en: ["shred"],
-    examples: [
+    usage: [
       {
         sp: "Usa dos tenedores para desmenuzar la carne cocida a fuego lento.",
         en: "Use two forks to shred the slow-cooked meat.",
@@ -589,7 +595,7 @@ export const spanishCookingVerbs = [
   {
     sp: "cernir",
     en: ["sift"],
-    examples: [
+    usage: [
       {
         sp: "Cierne la harina antes de añadirla a la mezcla.",
         en: "Sift the flour before adding it to the mix.",
@@ -599,7 +605,7 @@ export const spanishCookingVerbs = [
   {
     sp: "rebanar",
     en: ["slice"],
-    examples: [
+    usage: [
       {
         sp: "Rebana las pechugas de pollo para hacer chuletas finas.",
         en: "Slice the chicken breasts into thin cutlets.",
@@ -609,7 +615,7 @@ export const spanishCookingVerbs = [
   {
     sp: "rajar",
     en: ["slit"],
-    examples: [
+    usage: [
       {
         sp: "Raja la carne para ayudar a que se cocine uniformemente.",
         en: "Slit the meat to help it cook evenly.",
@@ -619,7 +625,7 @@ export const spanishCookingVerbs = [
   {
     sp: "untar",
     en: ["smear"],
-    examples: [
+    usage: [
       {
         sp: "Unta queso crema al bagel después de tostarla.",
         en: "Smear cream cheese on the bagel after toasting.",
@@ -630,7 +636,7 @@ export const spanishCookingVerbs = [
   {
     sp: "repartir",
     en: ["spread"],
-    examples: [
+    usage: [
       {
         sp: "Reparte los vegetales en la bandeja de horno para cocer uniformemente.",
         en: "Spread the vegetables onto the baking sheet to roast evenly.",
@@ -640,7 +646,7 @@ export const spanishCookingVerbs = [
   {
     sp: "rociar",
     en: ["sprinkle"],
-    examples: [
+    usage: [
       {
         sp: "Rocía el azúcar glas encima del pastel antes de servir.",
         en: "Sprinkle powdered sugar onto the cake before serving.",
@@ -650,7 +656,7 @@ export const spanishCookingVerbs = [
   {
     sp: "revolver, remover",
     en: ["stir"],
-    examples: [
+    usage: [
       {
         sp: "Revuelve el guisado para que no se queme.",
         en: "Stir the stew so that it doesn't burn.",
@@ -660,7 +666,7 @@ export const spanishCookingVerbs = [
   {
     sp: "colar",
     en: ["strain"],
-    examples: [
+    usage: [
       {
         sp: "Cuela la pasta y colócala en una cacerola.",
         en: "Strain the pasta and place in a saucepan.",
@@ -670,7 +676,7 @@ export const spanishCookingVerbs = [
   {
     sp: "rellenar",
     en: ["stuff"],
-    examples: [
+    usage: [
       {
         sp: "Rellena el pollo con albahaca y mozzarella antes de hornear.",
         en: "Stuff the chicken with basil and mozzarella before baking.",
@@ -681,7 +687,7 @@ export const spanishCookingVerbs = [
   {
     sp: "atar",
     en: ["tie"],
-    examples: [
+    usage: [
       {
         sp: "Ata las alas y las patas de pollo antes de hornear.",
         en: "Tie the chicken wings and legs together before baking.",
@@ -691,7 +697,7 @@ export const spanishCookingVerbs = [
   {
     sp: "tostar",
     en: ["toast"],
-    examples: [
+    usage: [
       {
         sp: "Tuesta el pan de ajo en el horno y sírvelo con pasta.",
         en: "Toast the garlic bread in the oven and serve with pasta.",
@@ -701,7 +707,7 @@ export const spanishCookingVerbs = [
   {
     sp: "quitar",
     en: ["trim"],
-    examples: [
+    usage: [
       {
         sp: "Quítale la grasa a las chuletas de cerdo.",
         en: "Trim the fat off the pork chops.",
@@ -711,7 +717,7 @@ export const spanishCookingVerbs = [
   {
     sp: "voltear",
     en: ["turn"],
-    examples: [
+    usage: [
       {
         sp: "Voltea el bistec después de un minuto.",
         en: "Turn the steak after a minute.",
@@ -721,7 +727,7 @@ export const spanishCookingVerbs = [
   {
     sp: "enrollar",
     en: ["twist"],
-    examples: [
+    usage: [
       {
         sp: "Enrolla el espárrago con tocino y hornéalo.",
         en: "Twist the bacon around the asparagus and bake.",
@@ -731,7 +737,7 @@ export const spanishCookingVerbs = [
   {
     sp: "mojar",
     en: ["wet"],
-    examples: [
+    usage: [
       {
         sp: "Moja los bordes del hojaldre y presiona para sellarlo.",
         en: "Wet the edges of the puff pastry and press down to seal.",
@@ -741,11 +747,19 @@ export const spanishCookingVerbs = [
   {
     sp: "envolver",
     en: ["wrap"],
-    examples: [
+    usage: [
       {
         sp: "Envuelve el pollo en tocino y colócalo en la parrilla.",
         en: "Wrap the chicken in bacon and place on the grill.",
       },
     ],
+  },
+];
+
+export const allDecks: CardDeck[] = [
+  {
+    id: "uuid123abc",
+    name: "Spanish Cooking Verbs",
+    cards: spanishCookingVerbs,
   },
 ];

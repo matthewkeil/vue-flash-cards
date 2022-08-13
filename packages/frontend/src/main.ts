@@ -1,6 +1,6 @@
 import "./registerServiceWorker";
 
-import { createApp, h, provide } from "vue";
+import { createApp } from "vue";
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client/core";
 import { DefaultApolloClient } from "@vue/apollo-composable";
 // import { createApolloProvider } from "@vue/apollo-option";
@@ -20,12 +20,8 @@ const apolloClient = new ApolloClient({
   link: new HttpLink({ uri }),
 });
 
-createApp({
-  setup() {
-    provide(DefaultApolloClient, apolloClient);
-  },
-  render: () => h(App),
-})
+createApp(App)
+  .provide(DefaultApolloClient, apolloClient)
   .use(store, key)
   .use(router)
   .use(viewportPlugin)

@@ -5,15 +5,7 @@ import { Field, ObjectType } from "type-graphql";
 import { TranslationPair } from "./TranslationPair";
 
 @ObjectType()
-export class SpanishVerb implements TranslationPair {
-  @Field()
-  @IsString()
-  sp!: string;
-
-  @Field(() => [String])
-  @IsString({ each: true })
-  en!: string[];
-
+export class SpanishVerb extends TranslationPair {
   @Field(() => [String], { nullable: true })
   @IsString({ each: true })
   @IsOptional()
@@ -25,9 +17,9 @@ export class SpanishVerb implements TranslationPair {
   @IsOptional()
   usage?: TranslationPair[];
 
-  constructor({ sp, en, related }: SpanishVerb) {
-    this.sp = sp;
-    this.en = en;
+  constructor({ sp, en, related, usage }: SpanishVerb) {
+    super({ sp, en });
     this.related = related;
+    this.usage = usage;
   }
 }
