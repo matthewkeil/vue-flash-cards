@@ -4,6 +4,8 @@
     <label>Deck Name</label>
     <input type="text" v-model="deckName" />
     <button>Start Playing</button>
+    <div v-if="decks"></div>
+    {{ JSON.stringify(decks) }}
   </div>
 </template>
 
@@ -15,14 +17,13 @@ import { ListDecksDocument } from "../graphql";
 export default {
   name: "Home",
   setup() {
-    const { result: decks, error, loading } = useQuery(ListDecksDocument);
+    const { result, error, loading } = useQuery(ListDecksDocument);
     const deckName = ref("Select a deck");
-
+    const decks = result.value?.listDecks;
     return {
-      deckName,
-      // decks,
-      // loading,
-      // error,
+      decks,
+      loading,
+      error,
     };
   },
 };

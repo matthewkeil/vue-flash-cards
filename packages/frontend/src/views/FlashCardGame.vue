@@ -40,6 +40,7 @@ export default defineComponent({
 
     const moveTime = 800;
     const store = useStore();
+    // store.
     const activeCardIndex = computed(() => store.state.activeCardIndex);
     const nextCardIndex = computed(() => store.state.nextCardIndex);
     const cardsRemaining = computed(() => store.getters.cardsRemaining);
