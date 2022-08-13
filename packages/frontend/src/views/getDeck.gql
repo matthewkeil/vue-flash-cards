@@ -1,0 +1,15 @@
+query getDeck($id: String!) {
+  getDeck(deckId: $id) {
+    id
+    name
+    cards {
+      en
+      sp
+      related
+      usage {
+        en
+        sp
+      }
+    }
+  }
+}
