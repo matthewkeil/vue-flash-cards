@@ -1,6 +1,6 @@
+import "reflect-metadata";
 import { IsBoolean, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
-import { Field, ObjectType } from "type-graphql";
 
 export interface SpanishVerbComponents {
   root: string;
@@ -10,9 +10,12 @@ export interface SpanishVerbComponents {
 
 const simplePronouns = ["yo", "tu", "nosotros", "vosotros"] as const;
 export type SpanishSimplePronoun = typeof simplePronouns[number];
-export function isSpanishSimplePronoun(obj: unknown): obj is SpanishSimplePronoun {
+export function isSpanishSimplePronoun(
+  obj: unknown
+): obj is SpanishSimplePronoun {
   return (
-    typeof obj === "string" && simplePronouns.includes(obj as SpanishSimplePronoun)
+    typeof obj === "string" &&
+    simplePronouns.includes(obj as SpanishSimplePronoun)
   );
 }
 
@@ -29,14 +32,19 @@ export function isSpanishThirdPersonSingular(
 
 const thirdPersonPlurals = ["ustedes", "ellos", "ellas"] as const;
 export type SpanishThirdPersonPlural = typeof thirdPersonPlurals[number];
-export function isSpanishThirdPersonPlural(obj: unknown): obj is SpanishThirdPersonPlural {
+export function isSpanishThirdPersonPlural(
+  obj: unknown
+): obj is SpanishThirdPersonPlural {
   return (
     typeof obj === "string" &&
     thirdPersonPlurals.includes(obj as SpanishThirdPersonPlural)
   );
 }
 
-export type SpanishPronoun = SpanishSimplePronoun | SpanishThirdPersonSingular | SpanishThirdPersonPlural;
+export type SpanishPronoun =
+  | SpanishSimplePronoun
+  | SpanishThirdPersonSingular
+  | SpanishThirdPersonPlural;
 export function isSpanishPronoun(obj: unknown): obj is SpanishPronoun {
   return (
     isSpanishSimplePronoun(obj) ||
