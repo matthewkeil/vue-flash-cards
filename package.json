@@ -4,7 +4,9 @@
   "description": "",
   "workspaces": [
     "packages/frontend",
-    "packages/backend"
+    "packages/backend",
+    "packages/utils",
+    "packages/infra"
   ],
   "scripts": {
     "ts": "node -r ts-node/register",
