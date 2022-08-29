@@ -1,6 +1,6 @@
 // progressive is continuous
 
-const englishToSpanishConversion = {
+export const englishToSpanishConversion = {
   past: {
     simple: "preteriteProgressive",
     perfect: "",
@@ -27,10 +27,10 @@ const englishToSpanishConversion = {
   },
 };
 
-const spanishToEnglishConversion = {
+export const spanishToEnglishConversion = {
   simple: {
     presentIndicative: "presentSimple",
-    presenteProgresivo: "presentContinuous", // no building this `yo estoy moviendo`
+    presentProgressive: "presentContinuous", // TODO: not building this `yo estoy moviendo`
     imperfectProgressive: "",
     preteriteProgressive: "",
     futureProgressive: "",
