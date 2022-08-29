@@ -84,7 +84,7 @@ function fixGuarAccentuation(verb: SpanishConjugation): SpanishConjugation {
   verb.ending = "guar";
   verb.root = verb.root.slice(0, -2);
 
-  verb.simpleConjugation.preteriteIndicative.yo = `${verb.root}güé`;
+  verb.simpleConjugation.preteriteProgressive.yo = `${verb.root}güé`;
 
   const singular = `${verb.root}güe`;
   const plural = `${verb.root}güen`;
@@ -126,7 +126,7 @@ function fixUirAccentuation(verb: SpanishConjugation): SpanishConjugation {
 
   singular = `${verb.root}uyó`;
   plural = `${verb.root}uyeron`;
-  verb.simpleConjugation.preteriteIndicative.usted = singular;
+  verb.simpleConjugation.preteriteProgressive.usted = singular;
 
   verb.simpleConjugation.presentSubjunctive = {
     yo: `${verb.root}uya`,

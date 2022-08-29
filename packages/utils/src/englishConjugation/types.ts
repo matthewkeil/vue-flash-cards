@@ -62,24 +62,6 @@ export class EnglishConjugatedTense implements IEnglishConjugatedTense {
   they!: string;
 }
 
-export class EnglishConditionalTense {
-  @ValidateNested()
-  @Type(() => EnglishConjugatedTense)
-  present!: EnglishConjugatedTense;
-
-  @ValidateNested()
-  @Type(() => EnglishConjugatedTense)
-  presentContinuous!: EnglishConjugatedTense;
-
-  @ValidateNested()
-  @Type(() => EnglishConjugatedTense)
-  past!: EnglishConjugatedTense;
-
-  @ValidateNested()
-  @Type(() => EnglishConjugatedTense)
-  pastContinuous!: EnglishConjugatedTense;
-}
-
 export class EnglishVerbTense {
   @ValidateNested()
   @Type(() => EnglishConjugatedTense)
@@ -96,6 +78,24 @@ export class EnglishVerbTense {
   @ValidateNested()
   @Type(() => EnglishConjugatedTense)
   perfectContinuous!: EnglishConjugatedTense;
+}
+
+export class EnglishConditionalTense {
+  @ValidateNested()
+  @Type(() => EnglishConjugatedTense)
+  present!: EnglishConjugatedTense;
+
+  @ValidateNested()
+  @Type(() => EnglishConjugatedTense)
+  presentContinuous!: EnglishConjugatedTense;
+
+  @ValidateNested()
+  @Type(() => EnglishConjugatedTense)
+  past!: EnglishConjugatedTense;
+
+  @ValidateNested()
+  @Type(() => EnglishConjugatedTense)
+  pastContinuous!: EnglishConjugatedTense;
 }
 
 export class EnglishConjugation extends EnglishVerbComponents {
