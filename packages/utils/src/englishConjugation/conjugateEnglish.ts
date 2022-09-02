@@ -38,6 +38,30 @@ function buildPast(parts: EnglishVerbComponents): EnglishVerbTense {
       youAll: `were ${parts.presentParticiple}`,
       they: `were ${parts.presentParticiple}`,
     },
+    simple: {
+      I: `was ${parts.presentParticiple}`,
+      you: `were ${parts.presentParticiple}`,
+      it: `was ${parts.presentParticiple}`,
+      we: `were ${parts.presentParticiple}`,
+      youAll: `were ${parts.presentParticiple}`,
+      they: `were ${parts.presentParticiple}`,
+    },
+    perfect: {
+      I: `was ${parts.presentParticiple}`,
+      you: `were ${parts.presentParticiple}`,
+      it: `was ${parts.presentParticiple}`,
+      we: `were ${parts.presentParticiple}`,
+      youAll: `were ${parts.presentParticiple}`,
+      they: `were ${parts.presentParticiple}`,
+    },
+    perfectContinuous: {
+      I: `was ${parts.presentParticiple}`,
+      you: `were ${parts.presentParticiple}`,
+      it: `was ${parts.presentParticiple}`,
+      we: `were ${parts.presentParticiple}`,
+      youAll: `were ${parts.presentParticiple}`,
+      they: `were ${parts.presentParticiple}`,
+    }
   } as EnglishVerbTense;
 
   for (const pronoun of pronouns) {
