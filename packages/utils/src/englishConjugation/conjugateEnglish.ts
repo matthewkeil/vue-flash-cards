@@ -108,7 +108,8 @@ function buildPresent(parts: EnglishVerbComponents): EnglishVerbTense {
       we: `were ${parts.pastParticiple}`,
       youAll: `were ${parts.pastParticiple}`,
       they: `were ${parts.pastParticiple}`,
-    }} as EnglishVerbTense;
+    }
+  } as EnglishVerbTense;
   for (const pronoun of pronouns) {
     verbTense.simple[pronoun] = parts.root;
     verbTense.perfect[pronoun] = `have ${parts.pastParticiple}`;
@@ -177,14 +178,17 @@ function buildFuture(parts: EnglishVerbComponents): EnglishVerbTense {
 function buildConditional(
   parts: EnglishVerbComponents
 ): EnglishConditionalTense {
-  const verbTense = {} as EnglishConditionalTense;
+  const verbTense = {
+    present: {},
+    presentContinuous: {},
+    past: {},
+    pastContinuous: {}
+  } as EnglishConditionalTense
   for (const pronoun of pronouns) {
     verbTense.present[pronoun] = `would ${parts.root}`;
     verbTense.presentContinuous[pronoun] = `would be ${parts.presentParticiple}`;
     verbTense.past[pronoun] = `would have ${parts.pastParticiple}`;
-    verbTense.pastContinuous[
-      pronoun
-    ] = `would have been ${parts.presentParticiple}`;
+    verbTense.pastContinuous[pronoun] = `would have been ${parts.presentParticiple}`;
   }
   return verbTense;
 }
