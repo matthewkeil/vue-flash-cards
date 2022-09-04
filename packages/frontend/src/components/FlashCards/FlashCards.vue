@@ -38,8 +38,8 @@ import {
   watch,
   watchEffect,
 } from "vue";
-import { Breakpoint, Orientation } from "../plugins/viewport";
-import ActiveCard from "./ActiveCard.vue";
+import { Breakpoint, Orientation } from "../../plugins/viewport";
+import ActiveCard from "./FlashCards/ActiveCard.vue";
 import CardStack from "./CardStack.vue";
 
 export default defineComponent({

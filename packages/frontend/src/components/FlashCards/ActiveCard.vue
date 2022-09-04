@@ -13,45 +13,16 @@
       @click.prevent="flipCard()"
     >
       <div
-        class="
-          card
-          absolute
-          justify-center
-          items-center
-          grid
-          w-full
-          h-full
-          rounded-3xl
-        "
+        class="card absolute justify-center items-center grid w-full h-full rounded-3xl"
         :class="{ flipped: isFlipped }"
       >
         <div
-          class="
-            front
-            absolute
-            justify-center
-            items-center
-            grid
-            w-full
-            h-full
-            rounded-3xl
-            bg-white
-          "
+          class="front absolute justify-center items-center grid w-full h-full rounded-3xl bg-white"
         >
           <slot name="front" />
         </div>
         <div
-          class="
-            back
-            absolute
-            justify-center
-            items-center
-            grid
-            w-full
-            h-full
-            rounded-3xl
-            bg-white
-          "
+          class="back absolute justify-center items-center grid w-full h-full rounded-3xl bg-white"
         >
           <slot name="back" />
         </div>
@@ -137,6 +108,7 @@ export default defineComponent({
   animation-duration: var(--front-to-back-time);
   animation-timing-function: ease-in-out;
 }
+
 @keyframes frontToBackAnimation {
   50% {
     transform: translate(90%, -90%) scale(0.85) rotate(8deg);
