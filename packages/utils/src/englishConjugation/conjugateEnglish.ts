@@ -82,38 +82,10 @@ function buildPresent(parts: EnglishVerbComponents): EnglishVerbTense {
 function buildFuture(parts: EnglishVerbComponents): EnglishVerbTense {
   const verbTense = {
 
-    continuous: {
-      I: `was ${parts.pastParticiple}`,
-      you: `were ${parts.pastParticiple}`,
-      it: `was ${parts.pastParticiple}`,
-      we: `were ${parts.pastParticiple}`,
-      youAll: `were ${parts.pastParticiple}`,
-      they: `were ${parts.pastParticiple}`,
-    },
-    simple: {
-      I: `was ${parts.pastSimple}`,
-      you: `were ${parts.pastSimple}`,
-      it: `was ${parts.pastSimple}`,
-      we: `were ${parts.pastSimple}`,
-      youAll: `were ${parts.pastSimple}`,
-      they: `were ${parts.pastSimple}`,
-    },
-    perfect: {
-      I: `was ${parts.pastParticiple}`,
-      you: `were ${parts.pastParticiple}`,
-      it: `was ${parts.pastParticiple}`,
-      we: `were ${parts.pastParticiple}`,
-      youAll: `were ${parts.pastParticiple}`,
-      they: `were ${parts.pastParticiple}`,
-    },
-    perfectContinuous: {
-      I: `was ${parts.pastParticiple}`,
-      you: `were ${parts.pastParticiple}`,
-      it: `was ${parts.pastParticiple}`,
-      we: `were ${parts.pastParticiple}`,
-      youAll: `were ${parts.pastParticiple}`,
-      they: `were ${parts.pastParticiple}`,
-    }
+    continuous: {},
+    simple: {},
+    perfect: {},
+    perfectContinuous: {}
   } as EnglishVerbTense;
   for (const pronoun of pronouns) {
     verbTense.simple[pronoun] = `will ${parts.root}`;
