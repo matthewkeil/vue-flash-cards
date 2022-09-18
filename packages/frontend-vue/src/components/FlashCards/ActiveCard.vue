@@ -46,10 +46,10 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const isFlipped = ref(false);
-    function flipCard() {
-      isFlipped.value = !isFlipped.value;
-    }
+    // const isFlipped = ref(false);
+    // function flipCard() {
+    //   isFlipped.value = !isFlipped.value;
+    // }
 
     const frontToBackActive = ref(false);
     function frontToBack() {
