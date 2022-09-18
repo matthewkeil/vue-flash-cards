@@ -7,6 +7,7 @@ import {
   CommitOptions,
   DispatchOptions,
 } from "vuex";
+import { Card } from "@/models";
 
 /**
  *
@@ -81,7 +82,7 @@ const mutations = {
  *
  */
 const actions = {
-  EMPTY_DECK({ commit }: ActionContext) {
+  emptyDeck({ commit }: ActionContext) {
     commit("UPDATE_CARDS", []);
   },
 };
@@ -124,10 +125,6 @@ export function useStore(): Store {
  * State
  *
  */
-export interface Card {
-  frontText: string;
-  backText: string;
-}
 type State = typeof state;
 /**
  *

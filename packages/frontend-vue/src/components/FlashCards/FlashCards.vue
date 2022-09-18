@@ -30,15 +30,8 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  getCurrentInstance,
-  Ref,
-  ref,
-  watch,
-  watchEffect,
-} from "vue";
-import { Breakpoint, Orientation } from "../plugins/viewport";
+import { defineComponent, getCurrentInstance, Ref, ref, watch } from "vue";
+import { Breakpoint, Orientation } from "../../plugins/viewport";
 import ActiveCard from "./ActiveCard.vue";
 import CardStack from "./CardStack.vue";
 

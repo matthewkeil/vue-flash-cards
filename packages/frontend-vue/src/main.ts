@@ -1,4 +1,5 @@
 import "./registerServiceWorker";
+import "flowbite";
 
 import { createApp } from "vue";
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client/core";
@@ -9,7 +10,7 @@ import App from "./App.vue";
 import { viewportPlugin } from "./plugins/viewport";
 import { store, key } from "./store";
 import router from "./router";
-import "./main.css";
+import "./main.scss";
 
 const PROD = process.env.NODE_ENV === "production";
 const uri = process.env.GRAPHQL_URI ?? "http://localhost:4000/graphql";

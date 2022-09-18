@@ -13,30 +13,51 @@
       <template v-slot:back>{{ activeCard.backText }}</template>
       <template v-slot:next>{{ nextCard.frontText }}</template>
     </FlashCards>
-    <button class="bg-white p-2 m-2" @click.prevent="wrongAnswer()">
+    <MenuButton :items="tenses"></MenuButton>
+    <button class="bg-white p-2 m-2 rounded-lg" @click.prevent="wrongAnswer()">
       wrong answer
     </button>
-    <button class="bg-white p-2 m-2" @click.prevent="correctAnswer()">
+    <button
+      class="bg-white p-2 m-2 rounded-lg"
+      @click.prevent="correctAnswer()"
+    >
       correct
     </button>
   </div>
 </template>
 
 <script lang="ts">
-import { useQuery } from "@vue/apollo-composable";
 import { computed, defineComponent, ref } from "vue";
 import { useStore } from "../store";
-import FlashCards from "../components/FlashCards.vue";
+import FlashCards from "@/components/FlashCards/FlashCards.vue";
+import MenuButton from "@/components/MenuButton/MenuButton.vue";
+import { MenuButtonItem } from "@/components/MenuButton/MenuButton.types";
 
 export default defineComponent({
   name: "FlashCardGame",
   components: {
     FlashCards,
+    MenuButton,
   },
   setup() {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const flashCardsRef = ref<InstanceType<typeof FlashCards>>(null as any);
     /* eslint-enable @typescript-eslint/no-explicit-any */
+
+    const tenses: MenuButtonItem[] = [
+      {
+        value: "presentIndicative",
+        text: "Present",
+      },
+      // {
+      //   href: "",
+      //   text: "Past",
+      // },
+      // {
+      //   href: "",
+      //   text: "Future",
+      // },
+    ];
 
     const moveTime = 800;
     const store = useStore();
@@ -62,6 +83,7 @@ export default defineComponent({
     }
 
     return {
+      tenses,
       flashCardsRef,
       moveTime,
       activeCard,

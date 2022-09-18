@@ -1,12 +1,12 @@
 import { Arg, Query, Resolver } from "type-graphql";
 
 import { CardDeck } from "./CardDeck";
-import { CardDeckMeta } from "./CardDeckMeta";
+import { CardDeckDetails } from "./CardDeckDetails";
 import { allDecks } from "../../data/cardDecks";
 
 @Resolver()
 export class CardDeckResolver {
-  @Query(() => [CardDeckMeta])
+  @Query(() => [CardDeckDetails])
   listDecks() {
     return allDecks.map(({ id, name }) => ({ id, name }));
   }

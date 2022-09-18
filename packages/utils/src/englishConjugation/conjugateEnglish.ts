@@ -1,15 +1,67 @@
-import { irregularVerbs } from "./irregularVerbs";
+import { EnglishConjugation, EnglishVerbComponents } from "./types";
+import { endsConsonantVowelConsonant, isVowel } from "./utils";
+import { buildActivePast, buildPassivePast } from "./conjugatePast";
 import {
-  pronouns,
-  EnglishConjugation,
-  EnglishVerbTense,
-  EnglishVerbComponents,
-  EnglishConditionalTense,
-} from "./types";
+  buildActiveConditional,
+  buildPassiveConditional,
+} from "./conjugateConditional";
+import { buildActivePresent, buildPassivePresent } from "./conjugatePresent";
+import { buildActiveFuture, buildPassiveFuture } from "./conjugateFuture";
+import { firstSyllableStressVerbs } from "./verbLists/firstSyllableStressVerbs";
+import { irregularVerbs } from "./verbLists/irregularVerbs";
+import { singleSyllableVerbs } from "./verbLists/singleSyllableVerbs";
+
+// https://www.grammar-monster.com/glossary/present_participle.htm
+function buildPresentParticiple(root: string): string {
+  // change "ie" to "y" like in "lie" -> "lying"
+  if (root.endsWith("ie")) {
+    return root.slice(0, -2) + "y" + "ing";
+  }
+
+  // remove "e" like in "move" -> "moving"
+  if (root.endsWith("e")) {
+    return root.slice(0, -1) + "ing";
+  }
+
+  // double the last consonant if appropriate like in "run" -> "running"
+  if (endsConsonantVowelConsonant(root)) {
+    return root + root.slice(-1) + "ing";
+  }
+
+  // default to just adding "ing"
+  return root + "ing";
+}
+
+// https://www.grammar-monster.com/glossary/simple_past_tense.htm
+function buildPastSimple(root: string): string {
+  // ends in consonant + "y"
+  if (root.endsWith("y") && !isVowel(root.slice(-2, -1))) {
+    return root.slice(0, -1) + "ied";
+  }
+
+  if (root.endsWith("e")) {
+    return root + "d";
+  }
+
+  if (root.endsWith("w") || root.endsWith("x") || root.endsWith("y")) {
+    return root + "ed";
+  }
+
+  // TODO: these lists are incomplete
+  if (
+    (singleSyllableVerbs.includes(root) ||
+      !firstSyllableStressVerbs.includes(root)) &&
+    endsConsonantVowelConsonant(root)
+  ) {
+    return root + root.slice(-1) + "ed";
+  }
+
+  return root + "ed";
+}
 
 function buildVerbParts(root: string): EnglishVerbComponents {
   const infinitive = `to ${root}`;
-  const presentParticiple = `${root}ing`;
+  const presentParticiple = buildPresentParticiple(root);
   if (root in irregularVerbs) {
     return {
       root,
@@ -18,7 +70,7 @@ function buildVerbParts(root: string): EnglishVerbComponents {
       ...irregularVerbs[root],
     };
   }
-  const pastSimple = root.endsWith("e") ? `${root}d` : `${root}ed`;
+  const pastSimple = buildPastSimple(root);
   return {
     root,
     infinitive,
@@ -28,101 +80,21 @@ function buildVerbParts(root: string): EnglishVerbComponents {
   };
 }
 
-function buildPast(parts: EnglishVerbComponents): EnglishVerbTense {
-  const verbTense = {
-    continuous: {
-      I: `was ${parts.pastParticiple}`,
-      you: `were ${parts.pastParticiple}`,
-      it: `was ${parts.pastParticiple}`,
-      we: `were ${parts.pastParticiple}`,
-      youAll: `were ${parts.pastParticiple}`,
-      they: `were ${parts.pastParticiple}`,
-    },
-    simple: {},
-    perfect: {},
-    perfectContinuous: {}
-  } as EnglishVerbTense;
-
-  for (const pronoun of pronouns) {
-    verbTense.simple[pronoun] = parts.pastSimple;
-    verbTense.perfect[pronoun] = `had ${parts.pastParticiple}`;
-    verbTense.perfectContinuous[
-      pronoun
-    ] = `had been ${parts.presentParticiple}`;
-  }
-
-  return verbTense;
-}
-
-function buildPresent(parts: EnglishVerbComponents): EnglishVerbTense {
-  const verbTense = {
-    continuous: {},
-    simple: {},
-    perfect: {},
-    perfectContinuous: {}
-  } as EnglishVerbTense;
-  for (const pronoun of pronouns) {
-    verbTense.simple[pronoun] = parts.root;
-    verbTense.perfect[pronoun] = `have ${parts.pastParticiple}`;
-    verbTense.continuous[pronoun] = `are ${parts.presentParticiple}`;
-    verbTense.perfectContinuous[
-      pronoun
-    ] = `have been ${parts.presentParticiple}`;
-  }
-
-  verbTense.simple.it += "s";
-  verbTense.perfect.it = `has ${parts.pastParticiple}`;
-  verbTense.continuous.I = `am ${parts.presentParticiple}`;
-  verbTense.continuous.it = `is ${parts.presentParticiple}`;
-  verbTense.perfectContinuous.it = `has been ${parts.presentParticiple}`;
-
-  return verbTense;
-}
-
-function buildFuture(parts: EnglishVerbComponents): EnglishVerbTense {
-  const verbTense = {
-
-    continuous: {},
-    simple: {},
-    perfect: {},
-    perfectContinuous: {}
-  } as EnglishVerbTense;
-  for (const pronoun of pronouns) {
-    verbTense.simple[pronoun] = `will ${parts.root}`;
-    verbTense.perfect[pronoun] = `will have ${parts.pastParticiple}`;
-    verbTense.continuous[pronoun] = `will be ${parts.presentParticiple}`;
-    verbTense.perfectContinuous[
-      pronoun
-    ] = `will have been ${parts.presentParticiple}`;
-  }
-  return verbTense;
-}
-
-function buildConditional(
-  parts: EnglishVerbComponents
-): EnglishConditionalTense {
-  const verbTense = {
-    present: {},
-    presentContinuous: {},
-    past: {},
-    pastContinuous: {}
-  } as EnglishConditionalTense
-  for (const pronoun of pronouns) {
-    verbTense.present[pronoun] = `would ${parts.root}`;
-    verbTense.presentContinuous[pronoun] = `would be ${parts.presentParticiple}`;
-    verbTense.past[pronoun] = `would have ${parts.pastParticiple}`;
-    verbTense.pastContinuous[pronoun] = `would have been ${parts.presentParticiple}`;
-  }
-  return verbTense;
-}
-
 export function conjugateEnglish(verb: string): EnglishConjugation {
   const parts = buildVerbParts(verb);
   return {
     ...parts,
-    past: buildPast(parts),
-    present: buildPresent(parts),
-    future: buildFuture(parts),
-    conditional: buildConditional(parts),
+    active: {
+      past: buildActivePast(parts),
+      present: buildActivePresent(parts),
+      future: buildActiveFuture(parts),
+      conditional: buildActiveConditional(parts),
+    },
+    passive: {
+      past: buildPassivePast(parts),
+      present: buildPassivePresent(parts),
+      future: buildPassiveFuture(parts),
+      conditional: buildPassiveConditional(parts),
+    },
   };
 }

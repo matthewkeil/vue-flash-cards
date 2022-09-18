@@ -756,10 +756,410 @@ export const spanishCookingVerbs: SpanishVerb[] = [
   },
 ];
 
+export const top100Verbs: SpanishVerb[] = [
+  {
+    sp: "deber",
+    en: ["owe"],
+  },
+  {
+    sp: "ganar",
+    en: ["win", "earn"],
+  },
+  {
+    sp: "escuchar",
+    en: ["listen"],
+  },
+  {
+    sp: "entrar",
+    en: ["enter"],
+  },
+  {
+    sp: "encantar",
+    en: ["love"],
+  },
+  {
+    sp: "cortar",
+    en: ["cut"],
+  },
+  {
+    sp: "cepilla",
+    en: ["brush"],
+  },
+  {
+    sp: "arreglar",
+    en: ["fix"],
+  },
+  {
+    sp: "andar",
+    en: ["walk"],
+  },
+  {
+    sp: "vender",
+    en: ["sell"],
+  },
+  {
+    sp: "traer",
+    en: ["bring"],
+  },
+  {
+    sp: "perder",
+    en: ["lose"],
+  },
+  {
+    sp: "caer",
+    en: ["fall"],
+  },
+  {
+    sp: "vestir",
+    en: ["wear"],
+  },
+  {
+    sp: "subir",
+    en: ["go up", "upload", "rise"],
+  },
+  {
+    sp: "reír",
+    en: ["laugh"],
+  },
+  {
+    sp: "preferir",
+    en: ["prefer"],
+  },
+  {
+    sp: "conducir",
+    en: ["drive"],
+  },
+  {
+    sp: "volar",
+    en: ["fly"],
+  },
+  {
+    sp: "quedar",
+    en: ["stay", "remain"],
+  },
+  {
+    sp: "pagar",
+    en: ["pay"],
+  },
+  {
+    sp: "mostrar",
+    en: ["show", "display"],
+  },
+  {
+    sp: "enviar",
+    en: ["send"],
+  },
+  {
+    sp: "echar",
+    en: ["throw"],
+  },
+  {
+    sp: "dejar",
+    en: ["leave"],
+  },
+  {
+    sp: "cuidar",
+    en: ["care"],
+  },
+  {
+    sp: "acostar",
+    en: ["lay down"],
+  },
+  {
+    sp: "llover",
+    en: ["rain"],
+  },
+  {
+    sp: "leer",
+    en: ["read"],
+  },
+  {
+    sp: "correr",
+    en: ["run"],
+  },
+  {
+    sp: "presentar",
+    en: ["introduce"],
+  },
+  {
+    sp: "pintar",
+    en: ["paint"],
+  },
+  {
+    sp: "mirar",
+    en: ["look"],
+  },
+  {
+    sp: "luchar",
+    en: ["fight"],
+  },
+  {
+    sp: "llegar",
+    en: ["arrive"],
+  },
+  {
+    sp: "levantar",
+    en: ["raise", "lift"],
+  },
+  {
+    sp: "encontrar",
+    en: ["find"],
+  },
+  {
+    sp: "empezar",
+    en: ["start"],
+  },
+  {
+    sp: "amar",
+    en: ["love"],
+  },
+  {
+    sp: "entender",
+    en: ["understand"],
+  },
+  {
+    sp: "beber",
+    en: ["drink"],
+  },
+  {
+    sp: "vivir",
+    en: ["live"],
+  },
+  {
+    sp: "sentir",
+    en: ["feel"],
+  },
+  {
+    sp: "visitar",
+    en: ["visit"],
+  },
+  {
+    sp: "preguntar",
+    en: ["ask"],
+  },
+  {
+    sp: "pensar",
+    en: ["think"],
+  },
+  {
+    sp: "pasar",
+    en: ["pass"],
+  },
+  {
+    sp: "mandar",
+    en: ["order"],
+  },
+  {
+    sp: "limpiar",
+    en: ["clean"],
+  },
+  {
+    sp: "despertar",
+    en: ["wake up", "awaken", "wake"],
+  },
+  {
+    sp: "cuestionar",
+    en: ["question"],
+  },
+  {
+    sp: "comenzar",
+    en: ["start"],
+  },
+  {
+    sp: "escribir",
+    en: ["write"],
+  },
+  {
+    sp: "convertir",
+    en: ["convert"],
+  },
+  {
+    sp: "lavar",
+    en: ["wash"],
+  },
+  {
+    sp: "estudiar",
+    en: ["study"],
+  },
+  {
+    sp: "esperar",
+    en: ["expect", "wait", "hope"],
+  },
+  {
+    sp: "pedir",
+    en: ["ask"],
+  },
+  {
+    sp: "conseguir",
+    en: ["get"],
+  },
+  {
+    sp: "usar",
+    en: ["use"],
+  },
+  {
+    sp: "sentar",
+    en: ["sit"],
+  },
+  {
+    sp: "probar",
+    en: ["try"],
+  },
+  {
+    sp: "cocinar",
+    en: ["cook"],
+  },
+  {
+    sp: "bailar",
+    en: ["dance"],
+  },
+  {
+    sp: "ayudar",
+    en: ["help"],
+  },
+  {
+    sp: "contener",
+    en: ["contain"],
+  },
+  {
+    sp: "necesitar",
+    en: ["need"],
+  },
+  {
+    sp: "llevar",
+    en: ["take"],
+  },
+  {
+    sp: "contar",
+    en: ["count"],
+  },
+  {
+    sp: "buscar",
+    en: ["look", "look for"],
+  },
+  {
+    sp: "comer",
+    en: ["eat"],
+  },
+  {
+    sp: "dormir",
+    en: ["sleep"],
+  },
+  {
+    sp: "viajar",
+    en: ["travel"],
+  },
+  {
+    sp: "aprender",
+    en: ["learn"],
+  },
+  {
+    sp: "venir",
+    en: ["come"],
+  },
+  {
+    sp: "oír",
+    en: ["hear"],
+  },
+  {
+    sp: "tomar",
+    en: ["take", "drink"],
+  },
+  {
+    sp: "llamar",
+    en: ["call"],
+  },
+  {
+    sp: "caminar",
+    en: ["walk"],
+  },
+  {
+    sp: "trabajar",
+    en: ["work"],
+  },
+  {
+    sp: "conocer",
+    en: ["know"],
+  },
+  {
+    sp: "jugar",
+    en: ["play"],
+  },
+  {
+    sp: "tocar",
+    en: ["touch", "play"],
+  },
+  {
+    sp: "saber",
+    en: ["know"],
+  },
+  {
+    sp: "salir",
+    en: ["leave"],
+  },
+  {
+    sp: "describir",
+    en: ["describe"],
+  },
+  {
+    sp: "hablar",
+    en: ["speak"],
+  },
+  {
+    sp: "gustar",
+    en: ["like"],
+  },
+  {
+    sp: "poner",
+    en: ["put"],
+  },
+  {
+    sp: "comprar",
+    en: ["buy"],
+  },
+  {
+    sp: "ver",
+    en: ["see"],
+  },
+  {
+    sp: "dar",
+    en: ["give"],
+  },
+  {
+    sp: "querer",
+    en: ["want"],
+  },
+  {
+    sp: "decir",
+    en: ["say"],
+  },
+  {
+    sp: "tener",
+    en: ["have"],
+  },
+  {
+    sp: "ir",
+    en: ["go"],
+  },
+  {
+    sp: "estar",
+    en: ["be"],
+  },
+  {
+    sp: "ser",
+    en: ["be"],
+  },
+];
+
 export const allDecks: CardDeck[] = [
   {
     id: "uuid123abc",
     name: "Spanish Cooking Verbs",
     cards: spanishCookingVerbs,
+  },
+  {
+    id: "uuid234def",
+    name: "Top 100 Spanish Verbs",
+    cards: top100Verbs,
   },
 ];

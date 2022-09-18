@@ -48,7 +48,7 @@ export const viewportPlugin: Plugin = {
 
     const removeListener = () => {
       window.removeEventListener("resize", resizeListener);
-      window.removeEventListener('beforeunload', removeListener);
+      window.removeEventListener("beforeunload", removeListener);
     };
     window.addEventListener("beforeunload", removeListener);
 
