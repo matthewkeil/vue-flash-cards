@@ -35,3 +35,7 @@ export function endsConsonantVowelConsonant(root: string): boolean {
   const endIsConsonant = !vowels.includes(end);
   return thirdIsConsonant && secondIsVowel && endIsConsonant;
 }
+
+export function shouldDoubleLastSimplePast(root: string): boolean {
+  return true;
+}

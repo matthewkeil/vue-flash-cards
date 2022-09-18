@@ -11,6 +11,8 @@ import { firstSyllableStressVerbs } from "./verbLists/firstSyllableStressVerbs";
 import { irregularVerbs } from "./verbLists/irregularVerbs";
 import { singleSyllableVerbs } from "./verbLists/singleSyllableVerbs";
 
+const { shouldDoubleLastSimplePast } = require("./shouldDoubleLast");
+
 // https://www.grammar-monster.com/glossary/present_participle.htm
 function buildPresentParticiple(root: string): string {
   // change "ie" to "y" like in "lie" -> "lying"
@@ -47,12 +49,13 @@ function buildPastSimple(root: string): string {
     return root + "ed";
   }
 
-  // TODO: these lists are incomplete
-  if (
-    (singleSyllableVerbs.includes(root) ||
-      !firstSyllableStressVerbs.includes(root)) &&
-    endsConsonantVowelConsonant(root)
-  ) {
+  if (shouldDoubleLastSimplePast(root)) {
+    // TODO: these lists are incomplete
+    // if (
+    //   (singleSyllableVerbs.includes(root) ||
+    //     !firstSyllableStressVerbs.includes(root)) &&
+    //   endsConsonantVowelConsonant(root)
+    // ) {
     return root + root.slice(-1) + "ed";
   }
 
